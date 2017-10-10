@@ -1,0 +1,46 @@
+group 'com.hazebyte'
+version '1.0.0'
+
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+
+clean {
+    delete "${rootDir}/out/"
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+
+    maven   {     url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'  }
+}
+
+dependencies {
+    compile group: 'org.bukkit', name: 'bukkit', version: '1.12.1-R0.1-SNAPSHOT'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
