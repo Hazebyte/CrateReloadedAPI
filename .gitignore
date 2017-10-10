@@ -1,0 +1,8 @@
+# Project specific
+.idea/*
+
+# Gradle
+.gradle
+
+# Output
+build/*
