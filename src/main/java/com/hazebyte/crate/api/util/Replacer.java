@@ -55,7 +55,7 @@ public class Replacer {
                 .replaceAll("%keyItemName%", ItemHelper.getName(crate.getKeyItem()))
                 .replaceAll("%crateType%", crate.getType().name())
                 .replaceAll("%crateCost%", Double.toString(crate.getCost()))
-                .replaceAll("%crateRewards", crate.getRewardString());
+                .replaceAll("%crateRewards%", crate.getRewardString());
     }
 
     public static String replace(String string, char color) {
