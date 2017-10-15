@@ -9,8 +9,6 @@ import java.util.List;
 
 public class Replacer {
 
-    private static String prefix = "[Crate] ";
-
     public static String replace(String string) {
         string = string.replace("%aqua%", "&b")
                 .replace("%black%", "&0")
@@ -37,8 +35,8 @@ public class Replacer {
                 .replace("%underline%", "&n");
 
         string = replace(string, '&')
-                    .replaceAll("%prefix%", prefix)
-                    .replaceAll("%p%", prefix)
+                    .replaceAll("%prefix%", Messenger.getPrefix())
+                    .replaceAll("%p%", Messenger.getPrefix())
                     .replaceAll("%list%", CrateAPI.getCrateRegistrar() != null ? CrateAPI.getCrateRegistrar().getCrateString() : "");
         return string;
     }
