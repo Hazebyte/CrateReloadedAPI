@@ -5,7 +5,8 @@ import java.util.Arrays;
 public enum AnimationType {
     ROULETTE(0),
     CSGO(1),
-    CSGO_REVERSE(2);
+    CSGO_REVERSE(2),
+    WHEEL(3);
 
     private static AnimationType[] byId = new AnimationType[4];
     private final int id;

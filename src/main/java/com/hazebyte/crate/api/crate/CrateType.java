@@ -8,8 +8,10 @@ import java.util.Map;
 
 public enum CrateType {
 	SUPPLY(0),
-	MYSTERY(1, AnimationType.ROULETTE, AnimationType.CSGO, AnimationType.CSGO_REVERSE),
-	KEY(2, AnimationType.ROULETTE, AnimationType.CSGO, AnimationType.CSGO_REVERSE),
+	MYSTERY(1, AnimationType.ROULETTE, AnimationType.CSGO,
+			AnimationType.CSGO_REVERSE, AnimationType.WHEEL),
+	KEY(2, AnimationType.ROULETTE, AnimationType.CSGO,
+			AnimationType.CSGO_REVERSE, AnimationType.WHEEL),
 	MENU(3);
 
 	private final int id;
