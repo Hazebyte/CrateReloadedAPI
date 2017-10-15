@@ -15,22 +15,22 @@ public interface CrateRegistrar {
 
     /**
      * Retrieves the specified {@link Crate} with a item.
-     * @param item
-     * @return
+     * @param item ItemStack
+     * @return {@link Crate}
      */
     Crate getCrate(ItemStack item);
 
     /**
      * Retrieves the specified {@link Crate} given the crate identifier name.
-     * @param str
-     * @return
+     * @param str Crate Identifier
+     * @return {@link Crate}
      */
     Crate getCrate(String str);
 
     /**
      * Retrieves the specified {@link Crate} given the display name.
-     * @param str
-     * @return
+     * @param str Display Name
+     * @return {@link Crate}
      */
     List<Crate> getCrateFromDisplayName(String str);
 
