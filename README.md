@@ -1,12 +1,13 @@
 # CrateReloaded API
 
-## Prerequisite
+[Website]() [Examples]() [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
 
-1. CrateReloaded v2.0.0+
-2. Gradle
 
-## To do
+Jenkins [![Build Status](https://ci.hazebyte.com/job/CrateReloadedAPI/badge/icon)](https://ci.hazebyte.com/job/CrateReloadedAPI/) 
+TravisCI [![Build Status](https://travis-ci.org/imWillX/CrateReloadedAPI.svg?branch=master)](https://travis-ci.org/imWillX/CrateReloadedAPI)
 
-1. Finish API/Implementation
-2. Javadoc
-3. Setup Maven
+## Requirements
+
+>- CrateReloaded v2.0.0 or higher
+>- JDK 1.8
+>- Gradle
