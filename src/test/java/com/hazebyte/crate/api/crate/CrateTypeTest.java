@@ -28,28 +28,4 @@ public class CrateTypeTest {
         assert CrateType.getType("MENU") == type;
     }
 
-    @Test
-    public void testSupplyCrateAnimations() {
-        CrateType type = CrateType.SUPPLY;
-        assert type.getAnimation() == null;
-    }
-
-    @Test
-    public void testMysteryCrateAnimations() {
-        CrateType type = CrateType.MYSTERY;
-        assert type.getAnimation().size() > 0;
-    }
-
-    @Test
-    public void testKeyCrateAnimations() {
-        CrateType type = CrateType.KEY;
-        assert type.getAnimation().size() > 0;
-    }
-
-    @Test
-    public void testMenuCrateAnimations() {
-        CrateType type = CrateType.MENU;
-        assert type.getAnimation() == null;
-    }
-
 }
