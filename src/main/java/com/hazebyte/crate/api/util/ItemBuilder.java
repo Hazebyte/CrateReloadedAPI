@@ -133,6 +133,14 @@ public class ItemBuilder {
 		return this;
 	}
 
+	public ItemBuilder hideAll(boolean hide) {
+		return flag(ItemFlag.HIDE_ENCHANTS)
+				.flag(ItemFlag.HIDE_ATTRIBUTES)
+				.flag(ItemFlag.HIDE_UNBREAKABLE)
+				.flag(ItemFlag.HIDE_POTION_EFFECTS)
+				.flag(ItemFlag.HIDE_DESTROYS);
+	}
+
 	public ItemBuilder woolColor(DyeColor color) {
 		if(itemStack != null && itemStack.getType() == Material.WOOL) {
 			Wool wool = new Wool(color);
