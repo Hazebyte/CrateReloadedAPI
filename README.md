@@ -1,8 +1,6 @@
 # CrateReloaded API
 
-* [Website]() 
-* [Examples]() 
-* [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
+* [Website]() [Examples]() [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
 
 
 * Jenkins [![Build Status](https://ci.hazebyte.com/job/CrateReloadedAPI/badge/icon)](https://ci.hazebyte.com/job/CrateReloadedAPI/) 
