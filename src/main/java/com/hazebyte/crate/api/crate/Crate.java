@@ -26,6 +26,10 @@ public interface Crate {
     
     AnimationType getAnimationType();
 
+    void addReward(Reward reward);
+
+    void removeReward(Reward reward);
+
     void setRewards(List<Reward> rewards);
 
     List<Reward> getRewards();
