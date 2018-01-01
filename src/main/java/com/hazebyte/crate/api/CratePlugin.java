@@ -7,6 +7,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public interface CratePlugin extends Plugin {
 
+    boolean isReady();
+
     CrateRegistrar getCrateRegistrar();
 
     BlockCrateRegistrar getBlockCrateRegistrar();
