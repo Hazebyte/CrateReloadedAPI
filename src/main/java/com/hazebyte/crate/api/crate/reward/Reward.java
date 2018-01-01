@@ -39,15 +39,17 @@ public interface Reward {
 
     void setCommands(List<String> commands);
 
-    Map<MessageType, String> getMessages();
+    Map<MessageType, String[]> getMessages();
 
-    String getBroadcast();
+    String[] getBroadcast();
 
-    String getInlineBroadcast();
+    String[] getInlineBroadcast();
 
-    String getOpenMessage();
+    String[] getOpenMessage();
 
     void setMessages(Tag tag, List<String> messages);
+
+    void setMessages(Tag tag, String... messages);
 
     boolean hasNoDuplicate();
 
