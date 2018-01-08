@@ -14,7 +14,7 @@ public class BlockSetEvent extends Event implements Cancellable{
 
     private static HandlerList handlerList = new HandlerList();
 
-    protected BlockSetEvent(Crate crate, Location location) {
+    public BlockSetEvent(Crate crate, Location location) {
         this.crate = crate;
         this.location = location;
     }
