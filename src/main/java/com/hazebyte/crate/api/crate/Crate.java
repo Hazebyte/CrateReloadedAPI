@@ -1,6 +1,7 @@
 package com.hazebyte.crate.api.crate;
 
 import com.hazebyte.crate.api.crate.reward.Reward;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -77,4 +78,12 @@ public interface Crate {
     boolean isBuyable();
     
     boolean isPreviewable();
+
+    List<String> getHolographicText();
+
+    void setHolographicText(List<String> text);
+
+    void showHolographic(Location location);
+
+    void hideHolographic(Location location);
 }
