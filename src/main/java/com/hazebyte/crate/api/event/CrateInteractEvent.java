@@ -8,25 +8,25 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-/**
- * @deprecated as of CrateReloaded 2.0.0
- *
- * Use the following events ... {@link CrateActionEvent} {@link CrateLeftClickEvent} {@link CrateRightClickEvent}
- *                            {@link CrateOpenEvent} {@link CratePreviewEvent}
- */
-@Deprecated
 public class CrateInteractEvent extends Event implements Cancellable {
     
-    private static HandlerList handlerList = new HandlerList();
-    private Player player;
-    private Crate crate;
-    private Location location;
-    private CrateAction action;
+    private static HandlerList handlers = new HandlerList();
+    protected Player player;
+    protected Crate crate;
+    protected Location location;
+    protected CrateAction action;
     private boolean cancelled;
-    
-    public CrateInteractEvent(Player player, Crate crate, Location location, CrateAction action) {
-        this.player = player;
+
+    public CrateInteractEvent(Crate crate, Player player, CrateAction action) {
         this.crate = crate;
+        this.player = player;
+        this.location = player.getLocation();
+        this.action = action;
+    }
+
+    public CrateInteractEvent(Crate crate, Player player, Location location, CrateAction action) {
+        this.crate = crate;
+        this.player = player;
         this.location = location;
         this.action = action;
     }
@@ -49,11 +49,11 @@ public class CrateInteractEvent extends Event implements Cancellable {
     
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
+        return handlers;
     }
     
     public static HandlerList getHandlerList() {
-        return handlerList;
+        return handlers;
     }
 
     @Override
