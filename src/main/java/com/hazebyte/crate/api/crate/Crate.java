@@ -20,9 +20,11 @@ public interface Crate {
     CrateType getType();
     
     ItemStack getItem();
-    
+
     double getCost();
-    
+
+    void setCost(double amount);
+
     AnimationType getAnimationType();
 
     void addReward(Reward reward);
