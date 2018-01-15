@@ -49,8 +49,7 @@ public class Replacer {
     public static String replace(String string, Crate crate) {
         return string.replaceAll("%crateName%", crate.getDisplayName())
                 .replaceAll("%crateUUID%", crate.getCrateName())
-                .replaceAll("%crateItemName%", ItemHelper.getName(crate.getCrateItem()))
-                .replaceAll("%keyItemName%", ItemHelper.getName(crate.getKeyItem()))
+                .replaceAll("%itemName%", ItemHelper.getName(crate.getItem()))
                 .replaceAll("%crateType%", crate.getType().name())
                 .replaceAll("%crateCost%", Double.toString(crate.getCost()))
                 .replaceAll("%crateRewards%", crate.getRewardString());
