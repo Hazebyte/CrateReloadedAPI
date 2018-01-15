@@ -11,7 +11,7 @@ public class ItemHelper {
     // todo Fix newLine.
 
     public static String getName(ItemStack item) {
-        if(item != null && item.hasItemMeta()) {
+        if(item != null && item.getItemMeta() != null) {
             return item.getItemMeta().getDisplayName();
         }
 
@@ -19,7 +19,7 @@ public class ItemHelper {
     }
 
     public static List<String> getLore(ItemStack item) {
-        if(item != null && item.hasItemMeta() && item.getItemMeta().hasLore()) {
+        if(item != null && item.getItemMeta() != null && item.getItemMeta().hasLore()) {
             return item.getItemMeta().getLore();
         }
         return new ArrayList<>();
