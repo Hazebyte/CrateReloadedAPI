@@ -19,9 +19,7 @@ public interface Crate {
     
     CrateType getType();
     
-    ItemStack getCrateItem();
-    
-    ItemStack getKeyItem();
+    ItemStack getItem();
     
     double getCost();
     
@@ -54,9 +52,7 @@ public interface Crate {
     int getMaximumRewards();
     
     double getGrossChance(List<Reward> rewards);
-    
-    boolean requiresKey();
-    
+
     int getPreviewRows();
 
     void setDisplayName(String name);
@@ -65,16 +61,12 @@ public interface Crate {
 
     void setDisplayItem(ItemStack item);
     
-    void setCrateItem(ItemStack item);
-    
-    void setKeyItem(ItemStack item);
+    void setItem(ItemStack item);
     
     void setRequiresKey(boolean bool);
 
-    boolean isKey(ItemStack item);
+    boolean is(ItemStack item);
 
-    boolean isCrate(ItemStack item);
-    
     boolean isBuyable();
     
     boolean isPreviewable();
