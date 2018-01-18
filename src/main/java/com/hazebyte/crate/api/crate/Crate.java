@@ -1,10 +1,13 @@
 package com.hazebyte.crate.api.crate;
 
 import com.hazebyte.crate.api.crate.reward.Reward;
+import com.hazebyte.crate.api.effect.Category;
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface Crate {
@@ -80,4 +83,8 @@ public interface Crate {
     void showHolographic(Location location);
 
     void hideHolographic(Location location);
+
+    void addEffect(Category category, ConfigurationSection effect);
+
+    Collection<ConfigurationSection> getEffect(Category category);
 }
