@@ -46,6 +46,10 @@ public class CrateInteractEvent extends Event implements Cancellable {
     public CrateAction getAction() {
         return action;
     }
+
+    public void setAction(CrateAction action) {
+        this.action = action;
+    }
     
     @Override
     public HandlerList getHandlers() {
