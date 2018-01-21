@@ -3,6 +3,7 @@ package com.hazebyte.crate.api.crate;
 import java.util.Arrays;
 
 public enum AnimationType {
+    NONE(-1),
     ROULETTE(0),
     CSGO(1),
     CSGO_REVERSE(2),
