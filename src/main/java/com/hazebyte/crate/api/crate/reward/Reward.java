@@ -54,4 +54,6 @@ public interface Reward {
     boolean hasNoDuplicate();
 
     void setNoDuplicate(boolean bool);
+
+    void onReward(Player player);
 }
