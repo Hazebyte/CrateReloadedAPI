@@ -85,6 +85,9 @@ public abstract class Messenger {
     }
 
     public static void info(Object msg) {
+        if (msg == null) {
+            return;
+        }
         String formatted = Replacer.replace(msg.toString());
         if(!formatted.startsWith(consolePrefix)) {
             formatted = consolePrefix + formatted;
@@ -93,6 +96,9 @@ public abstract class Messenger {
     }
 
     public static void warning(Object msg) {
+        if (msg == null) {
+            return;
+        }
         String formatted = Replacer.replace(msg.toString());
         if(!formatted.startsWith(consolePrefix)) {
             formatted = consolePrefix + formatted;
@@ -101,6 +107,9 @@ public abstract class Messenger {
     }
 
     public static void severe(Object msg) {
+        if (msg == null) {
+            return;
+        }
         String formatted = Replacer.replace(msg.toString());
         if(!formatted.startsWith(consolePrefix)) {
             formatted = consolePrefix + formatted;
