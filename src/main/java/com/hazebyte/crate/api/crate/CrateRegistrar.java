@@ -50,8 +50,6 @@ public interface CrateRegistrar {
 
     void previewAll(List<Crate> crate, Player player);
 
-    DefaultSettings getSettings();
-
     String getCrateString();
 
 }
