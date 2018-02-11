@@ -2,6 +2,7 @@ package com.hazebyte.crate.api.crate;
 
 import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.effect.Category;
+import de.slikey.effectlib.Effect;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -86,7 +87,13 @@ public interface Crate {
 
     void addEffect(Category category, ConfigurationSection effect);
 
+    Effect getEffect(Location location);
+
     Collection<ConfigurationSection> getEffect(Category category);
 
     void runEffect(Location location, Category category);
+
+    void onReward(Player player, Reward reward);
+
+    void onRewards(Player player, List<Reward> rewards);
 }

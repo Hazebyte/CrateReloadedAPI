@@ -55,5 +55,5 @@ public interface Reward {
 
     void setNoDuplicate(boolean bool);
 
-    void onReward(Player player);
+    void onWin(Player player);
 }
