@@ -96,8 +96,9 @@ public interface Crate {
      * Removes a reward from the prize list.
      *
      * @param reward The reward to remove
+     * @return true if reward was removed, false otherwise.
      */
-    void removeReward(Reward reward);
+    boolean removeReward(Reward reward);
 
     /**
      * Sets the list of rewards to a new list
@@ -107,7 +108,7 @@ public interface Crate {
     void setRewards(List<Reward> rewards);
 
     /**
-     * Returns the list of rewards.
+     * Returns the list of rewards. If there are no rewards, it returns the empty list.
      *
      * @return List of {@link Reward}
      */
@@ -167,25 +168,76 @@ public interface Crate {
     
     double getGrossChance(List<Reward> rewards);
 
+    /**
+     * Returns the number of rows in a preview menu.
+     *
+     * @return the number of rows.
+     */
     int getPreviewRows();
 
-    void setDisplayName(String name);
+    /**
+     * Sets the display name. If the name is null, it'll be set to the empty string.
+     *
+     * @param name
+     */
+    void setDisplayName(String name) throws IllegalArgumentException;
 
+    /**
+     * Sets the animation to a {@link AnimationType}
+     *
+     * @param type
+     */
     void setAnimationType(AnimationType type);
 
+    /**
+     * Sets the display item which is displayed in virtual menus.
+     *
+     * @param item
+     */
     void setDisplayItem(ItemStack item);
-    
+
+    /**
+     * Sets the item which is given to a player.
+     *
+     * @param item
+     */
     void setItem(ItemStack item);
-    
+
+    /**
+     * Checks if an {@link ItemStack} equals this crate's item.<br>
+     * The matching scheme is based on a configuration setting in the config.yml.<br>
+     * The strictest setting will match with NBT. The lightest setting will compare
+     * the item's meta.
+     *
+     * @param item
+     * @return true if the item matches, false otherwise.
+     */
     boolean is(ItemStack item);
 
+    /**
+     * Returns whether this crate is for sale.
+     * @return true if the crate is for sale, false otherwise.
+     */
     boolean isBuyable();
-    
+
+    /**
+     * Returns whether this crate is previewable.
+     * @return true if the crate is previewable, false otherwise.
+     */
     boolean isPreviewable();
 
     List<String> getHolographicText();
 
+    /**
+     * Sets the holographic text.
+     * @param text
+     */
     void setHolographicText(List<String> text);
+
+    /**
+     * Updates all locations where hologrpahics have been set.
+     */
+    void reloadHolographic();
 
     void showHolographic(Location location);
 
@@ -201,7 +253,17 @@ public interface Crate {
 
     void runEffect(Location location, Category category);
 
+    /**
+     * This method is called whenever an action triggers.
+     * @param player
+     * @param reward
+     */
     void onReward(Player player, Reward reward);
 
+    /**
+     * This method is called whenever an action triggers.
+     * @param player
+     * @param rewards
+     */
     void onRewards(Player player, List<Reward> rewards);
 }
