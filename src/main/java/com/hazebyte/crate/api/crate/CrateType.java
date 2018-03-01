@@ -7,9 +7,31 @@ import java.util.List;
 import java.util.Map;
 
 public enum CrateType {
+	/**
+	 * Type of crate that item is specifically a chest. This crate may only be activated or
+	 * opened in-game by placing the chest onto a ground surface. The winning rewards are
+	 * placed into the chest inventory.<br>
+	 *
+	 * This type does not support any gui animations at the moment.
+	 */
 	SUPPLY(0),
+	/**
+	 * Type of crate that can be opened at any time. It may be activated at anytime or anywhere
+	 * by performing a left or right click.
+	 *
+	 * This type supports all animations.
+	 */
 	MYSTERY(1),
+	/**
+	 * Type of crate which specifically uses a key. A preset location must be present for users
+	 * to interact with.
+	 *
+	 * This type supports all animations.
+	 */
 	KEY(2),
+	/**
+	 * @deprecated
+	 */
 	MENU(3);
 
 	private final int id;
