@@ -87,6 +87,8 @@ public interface Crate {
 
     void addEffect(Category category, ConfigurationSection effect);
 
+    void removeEffect(Category category, ConfigurationSection effect);
+
     Effect getEffect(Location location);
 
     Collection<ConfigurationSection> getEffect(Category category);
