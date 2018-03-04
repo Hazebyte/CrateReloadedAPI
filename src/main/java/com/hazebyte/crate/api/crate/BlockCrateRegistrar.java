@@ -5,7 +5,7 @@ import org.bukkit.Location;
 import java.util.List;
 
 /**
- * Contains methods used to register and unregister location based crates.
+ * Contain methods used to retrieve and manipulate location based crates.
  */
 public interface BlockCrateRegistrar {
 

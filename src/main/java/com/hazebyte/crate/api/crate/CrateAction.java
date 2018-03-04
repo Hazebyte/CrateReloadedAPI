@@ -1,7 +1,7 @@
 package com.hazebyte.crate.api.crate;
 
 /**
- * Contains states which represent an action.
+ * Contain states which represent an action.
  */
 public enum CrateAction {
     /**

@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 /**
- * Contains methods used to create and manipulate crate attributes.
+ * Contains methods used to manipulate and retrieve a crate.
  */
 public interface CrateRegistrar {
 
@@ -23,7 +23,7 @@ public interface CrateRegistrar {
     Crate createCrate(String name, CrateType type) throws IllegalArgumentException;
 
     /**
-     * Crates a default reward.
+     * Creates a default reward.
      *
      * @return {@link Reward}
      */
@@ -57,7 +57,7 @@ public interface CrateRegistrar {
     List<Crate> getCrates();
 
     /**
-     * Checks if the item is or isn't a crate's item.
+     * Checks if the item represents a crate.
      *
      * @param item {@link ItemStack}
      * @return true if the item is a crate, false otherwise.
@@ -74,7 +74,7 @@ public interface CrateRegistrar {
 
     /**
      * Removes a crate from the plugin. This unregisters the crate from the plugin. Actions
-     * will no longer active this crate.
+     * will no longer be handled by this crate if you do so.
      * @param crate The crate that you will remove
      */
     void remove(Crate crate);

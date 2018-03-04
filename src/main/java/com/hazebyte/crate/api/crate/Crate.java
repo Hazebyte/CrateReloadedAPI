@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Contains methods and attributes used to manipulate and represent a crate.
+ * Represents a crate
  */
 public interface Crate {
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Contains states that determine the interactions a crate takes.
+ * Contain states that determine the interactions a crate takes.
  */
 public enum CrateType {
 	/**
