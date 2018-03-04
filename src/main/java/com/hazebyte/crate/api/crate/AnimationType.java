@@ -2,6 +2,9 @@ package com.hazebyte.crate.api.crate;
 
 import java.util.Arrays;
 
+/**
+ * Contains states which determine the type of animation that activates.
+ */
 public enum AnimationType {
     /**
      * No animation

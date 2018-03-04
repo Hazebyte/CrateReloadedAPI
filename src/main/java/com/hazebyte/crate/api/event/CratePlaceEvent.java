@@ -7,6 +7,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+/**
+ * Called when a player places a {@link com.hazebyte.crate.api.crate.CrateType#SUPPLY}
+ */
 public class CratePlaceEvent extends Event implements Cancellable {
 
     private Crate crate;

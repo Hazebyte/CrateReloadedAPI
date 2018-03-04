@@ -1,5 +1,8 @@
 package com.hazebyte.crate.api.effect;
 
+/**
+ * States which represent when an effect is activated.
+ */
 public enum Category {
     /**
      * Called when a player opens a crate.

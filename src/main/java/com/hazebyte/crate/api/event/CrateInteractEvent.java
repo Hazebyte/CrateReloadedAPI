@@ -8,6 +8,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+/**
+ * Called when a player interacts with a crate.
+ */
 public class CrateInteractEvent extends Event implements Cancellable {
     
     private static HandlerList handlers = new HandlerList();

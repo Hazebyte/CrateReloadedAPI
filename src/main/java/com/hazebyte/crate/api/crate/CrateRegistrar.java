@@ -7,6 +7,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
+/**
+ * Contains methods used to create and manipulate crate attributes.
+ */
 public interface CrateRegistrar {
 
     /**

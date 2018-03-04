@@ -4,6 +4,9 @@ import com.hazebyte.crate.api.CratePlugin;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
+/**
+ * Called when the plugin finishes loading.
+ */
 public class PluginReadyEvent extends Event {
 
     private CratePlugin plugin;

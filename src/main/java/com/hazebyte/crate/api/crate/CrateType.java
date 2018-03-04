@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Contains states that determine the interactions a crate takes.
+ */
 public enum CrateType {
 	/**
 	 * Type of crate that item is specifically a chest. This crate may only be activated or

@@ -1,5 +1,8 @@
 package com.hazebyte.crate.api.crate;
 
+/**
+ * Contains states which represent an action.
+ */
 public enum CrateAction {
     /**
      * State when a player left clicks and previews a crate.
