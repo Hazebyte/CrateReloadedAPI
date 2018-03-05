@@ -49,6 +49,20 @@ public interface Crate {
     ItemStack getDisplayItem();
 
     /**
+     * Checks whether this crate has a display name.
+     *
+     * @return true if the display name is not null, false otherwise.
+     */
+    boolean hasDisplayName();
+
+    /**
+     * Checks whether this crate has a display item.
+     *
+     * @return true if the display item is not null, false otherwise.
+     */
+    boolean hasDisplayItem();
+
+    /**
      * Returns the type that determines the minecraft action <br>
      *     that activates the crate.
      *
