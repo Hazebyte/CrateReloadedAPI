@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.block.Action;
 
 /**
  * Called when a player interacts with a crate.
@@ -18,20 +19,23 @@ public class CrateInteractEvent extends Event implements Cancellable {
     protected Crate crate;
     protected Location location;
     protected CrateAction action;
+    protected Action rootAction;
     private boolean cancelled;
 
-    public CrateInteractEvent(Crate crate, Player player, CrateAction action) {
+    public CrateInteractEvent(Crate crate, Player player, CrateAction action, Action rootAction) {
         this.crate = crate;
         this.player = player;
         this.location = player.getLocation();
         this.action = action;
+        this.rootAction = rootAction;
     }
 
-    public CrateInteractEvent(Crate crate, Player player, Location location, CrateAction action) {
+    public CrateInteractEvent(Crate crate, Player player, Location location, CrateAction click, Action rootAction) {
         this.crate = crate;
         this.player = player;
         this.location = location;
         this.action = action;
+        this.rootAction = rootAction;
     }
 
     public Player getPlayer() {
@@ -50,10 +54,10 @@ public class CrateInteractEvent extends Event implements Cancellable {
         return action;
     }
 
-    public void setAction(CrateAction action) {
-        this.action = action;
+    public Action getRootAction() {
+        return rootAction;
     }
-    
+
     @Override
     public HandlerList getHandlers() {
         return handlers;
