@@ -320,8 +320,10 @@ public interface Crate {
      *
      * @param category Type of {@link Category} which will trigger this effect.
      * @param effect see {@link ConfigurationSection}
+     *
+     * @return true if the specified effect is removed, false otherwise.
      */
-    void removeEffect(Category category, ConfigurationSection effect);
+    boolean removeEffect(Category category, ConfigurationSection effect);
 
     /**
      * Restarts all effects.
