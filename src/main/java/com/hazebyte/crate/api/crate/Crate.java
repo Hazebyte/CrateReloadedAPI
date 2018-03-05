@@ -310,6 +310,11 @@ public interface Crate {
     void removeEffect(Category category, ConfigurationSection effect);
 
     /**
+     * Restarts all effects.
+     */
+    void reloadEffects();
+
+    /**
      * Returns the effect at a location.
      *
      * @param location the location where the effect is at.
