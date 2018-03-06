@@ -1,13 +1,14 @@
 package com.hazebyte.crate.api.crate.reward;
 
 import com.hazebyte.crate.api.crate.Crate;
+import com.hazebyte.crate.api.crate.PluginSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 import java.util.Map;
 
-public interface Reward {
+public interface Reward extends PluginSerializable {
 
     Crate getParent();
 

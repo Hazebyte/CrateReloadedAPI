@@ -5,6 +5,7 @@ import com.hazebyte.crate.api.effect.Category;
 import de.slikey.effectlib.Effect;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Represents a crate
  */
-public interface Crate {
+public interface Crate extends ConfigurationSerializable {
 
     /**
      * Returns the name of the crate. <br>

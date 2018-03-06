@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RewardLine {
-	String rewardString;
+	private String rewardString;
 
 	public RewardLine(String rewardString) {
 		this.rewardString = rewardString.trim();
