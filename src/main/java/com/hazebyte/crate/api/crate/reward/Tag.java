@@ -5,7 +5,7 @@ public enum Tag {
 	ITEM("item"),
 	CHANCE("chance"),
 	DISPLAY("display"),
-	PERMISSION("singleton"),
+	PERMISSION("permission"),
 	MESSAGE("msg"),
 	BROADCAST("broadcast"),
 	BROADCAST_INLINE("inbroadcast"),

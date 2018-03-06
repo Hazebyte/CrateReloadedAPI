@@ -16,9 +16,11 @@ public interface Reward extends PluginSerializable {
 
     RewardLine getLine();
 
-    boolean hasOneTimePerm(Player player);
+    boolean hasPermission(Player player);
 
-    void setOneTimePerm(List<String> perms);
+    void setPermissions(List<String> perms);
+
+    List<String> getPermissions();
 
     int getSlot();
 
@@ -31,6 +33,8 @@ public interface Reward extends PluginSerializable {
     ItemStack getDisplayItem();
 
     void setDisplayItem(ItemStack item);
+
+    boolean hasDisplayItem();
 
     List<ItemStack> getItems();
 
