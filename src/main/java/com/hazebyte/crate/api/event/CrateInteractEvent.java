@@ -30,7 +30,7 @@ public class CrateInteractEvent extends Event implements Cancellable {
         this.rootAction = rootAction;
     }
 
-    public CrateInteractEvent(Crate crate, Player player, Location location, CrateAction click, Action rootAction) {
+    public CrateInteractEvent(Crate crate, Player player, Location location, CrateAction action, Action rootAction) {
         this.crate = crate;
         this.player = player;
         this.location = location;
