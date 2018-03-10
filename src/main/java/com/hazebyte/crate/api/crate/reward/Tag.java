@@ -9,7 +9,8 @@ public enum Tag {
 	MESSAGE("msg"),
 	BROADCAST("broadcast"),
 	BROADCAST_INLINE("inbroadcast"),
-	PREVENT_DUPLICATE("unique");
+	PREVENT_DUPLICATE("unique"),
+	ALWAYS("always");
 	
 	private final String tag;
 	Tag(String tag) {
