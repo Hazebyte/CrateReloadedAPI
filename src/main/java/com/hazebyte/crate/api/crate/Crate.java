@@ -103,6 +103,8 @@ public interface Crate extends ConfigurationSerializable {
      */
     AnimationType getAnimationType();
 
+    EndAnimationType getEndAnimationType();
+
     /**
      * Adds a reward to the prize list.
      *
@@ -231,6 +233,8 @@ public interface Crate extends ConfigurationSerializable {
      * @param type the type of animation
      */
     void setAnimationType(AnimationType type);
+
+    void setEndAnimationType(EndAnimationType type);
 
     /**
      * Sets the display item which is displayed in virtual menus.
