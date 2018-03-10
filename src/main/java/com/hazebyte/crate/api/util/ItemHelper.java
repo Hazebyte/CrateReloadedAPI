@@ -1,32 +1,42 @@
 package com.hazebyte.crate.api.util;
 
+import com.google.common.base.Strings;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ItemHelper {
 
-    // todo Fix newLine.
+    public static boolean hasName(ItemStack item) {
+        return (item != null && item.hasItemMeta() && item.getItemMeta().hasDisplayName());
+    }
+
+    public static boolean hasLore(ItemStack item) {
+        return (item != null && item.hasItemMeta() && item.getItemMeta().hasLore());
+    }
 
     public static String getName(ItemStack item) {
-        if(item != null && item.getItemMeta() != null) {
-            return item.getItemMeta().getDisplayName();
+        if (!hasName(item)) {
+            return null;
         }
 
-        return String.format("%sItem is invalid", ChatColor.RED);
+        return item.getItemMeta().getDisplayName();
     }
 
     public static List<String> getLore(ItemStack item) {
-        if(item != null && item.getItemMeta() != null && item.getItemMeta().hasLore()) {
-            return item.getItemMeta().getLore();
+        if (!hasLore(item)) {
+            return null;
         }
-        return new ArrayList<>();
+
+        return item.getItemMeta().getLore();
     }
 
     public static ItemStack setName(ItemStack item, String name) {
-        if(item == null || name == null || name.equals("")) {
+        if(item == null || Strings.isNullOrEmpty(name)) {
             return item;
         }
 
@@ -35,7 +45,7 @@ public class ItemHelper {
     }
 
     public static ItemStack setLore(ItemStack item, List<String> lore) {
-        if(item == null || lore == null || lore.size() <= 0) {
+        if(item == null || lore == null || lore.isEmpty()) {
             return item;
         }
 
