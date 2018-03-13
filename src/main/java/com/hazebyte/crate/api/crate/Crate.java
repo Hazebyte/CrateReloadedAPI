@@ -136,6 +136,14 @@ public interface Crate extends ConfigurationSerializable {
     List<Reward> getRewards();
 
     /**
+     * Returns the list of rewards that will be given to the player no matter what.
+     * If there are no rewards, it returns the empty list.
+     *
+     * @return List of {@link Reward}
+     */
+    List<Reward> getConstantRewards();
+
+    /**
      * Uses the built-in reward generator to pick a prize for a player.
      * The reward has to pass the permission check before it is put into
      * the list.
