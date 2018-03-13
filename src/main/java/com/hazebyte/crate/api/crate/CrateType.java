@@ -23,6 +23,8 @@ public enum CrateType {
 	 * by performing a left or right click.
 	 *
 	 * This type supports all animations.
+	 *
+	 * Notes: https://github.com/Hazebyte/CrateReloadedAPI/issues/16
 	 */
 	MYSTERY(1),
 	/**

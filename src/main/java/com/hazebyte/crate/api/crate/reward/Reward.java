@@ -133,18 +133,33 @@ public interface Reward extends PluginSerializable {
     void setMessages(Tag tag, String... messages);
 
     /**
+     * Returns whether this is a constant reward -- meaning that this reward
+     * will always be given to the player.
+     *
+     * @return true if the reward is constant, false otherwise.
+     */
+    boolean isConstant();
+
+    /**
+     * Set the constant property.
+     *
+     * @param bool the variable constant
+     */
+    void setConstant(boolean bool);
+
+    /**
      * Returns whether this is a unique reward.
      *
      * @return true if unique, otherwise false.
      */
-    boolean hasNoDuplicate();
+    boolean isUnique();
 
     /**
      * Sets the unique property.
      *
      * @param bool the boolean to set.
      */
-    void setNoDuplicate(boolean bool);
+    void setUnique(boolean bool);
 
     /**
      * Called when a player wins a reward.
