@@ -1,15 +1,48 @@
 package com.hazebyte.crate.api.crate.reward;
 
+/**
+ * States that determine the attributes of a {@link Reward}
+ */
 public enum Tag {
+    /**
+     * Represents a command.
+     */
 	COMMAND("cmd"),
+    /**
+     * Represents an item.
+     */
 	ITEM("item"),
+    /**
+     * Represents a chance value.
+     */
 	CHANCE("chance"),
+    /**
+     * Represents an display item.
+     */
 	DISPLAY("display"),
+    /**
+     * Represents a permission.
+     */
 	PERMISSION("permission"),
+    /**
+     * Represents an opening message.
+     */
 	MESSAGE("msg"),
+    /**
+     * Represents a broadcast message.
+     */
 	BROADCAST("broadcast"),
+    /**
+     * Represents an concatenated broadcast message.
+     */
 	BROADCAST_INLINE("inbroadcast"),
+    /**
+     * Represents a unique reward.
+     */
 	PREVENT_DUPLICATE("unique"),
+    /**
+     * Represents a persistent reward.
+     */
 	ALWAYS("always");
 	
 	private final String tag;

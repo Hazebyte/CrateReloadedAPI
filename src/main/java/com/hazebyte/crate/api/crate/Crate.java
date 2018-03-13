@@ -107,6 +107,7 @@ public interface Crate extends ConfigurationSerializable {
 
     /**
      * Adds a reward to the prize list.
+     * Calls {@link Reward#setParent(Crate)}, and sets the parent to this crate.
      *
      * @param reward The reward to add
      */
