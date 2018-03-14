@@ -107,6 +107,22 @@ public interface Reward extends PluginSerializable {
     void setItems(List<ItemStack> items);
 
     /**
+     * Adds an item to the reward.
+     *
+     * @param item the item to add.
+     * @return true if the collection of items is changed.
+     */
+    boolean addItem(ItemStack item);
+
+    /**
+     * Removes a single instance of the specified element from the collection.
+     *
+     * @param item the item to remove
+     * @return true if the instance is removed
+     */
+    boolean removeItem(ItemStack item);
+
+    /**
      * Returns the list of commands.
      *
      * @return the list of commands, otherwise the empty list.
@@ -119,6 +135,22 @@ public interface Reward extends PluginSerializable {
      * @param commands the list to set.
      */
     void setCommands(List<String> commands);
+
+    /**
+     * Adds an command to the reward.
+     *
+     * @param command the command to add.
+     * @return true if the collection of commands is changed.
+     */
+    boolean addCommand(String command);
+
+    /**
+     * Removes a single instance of the specified element from the collection.
+     *
+     * @param command the command to remove.
+     * @return true if the instance is removed
+     */
+    boolean removeCommand(String command);
 
     Map<MessageType, String[]> getMessages();
 
