@@ -79,7 +79,7 @@ public interface CrateRegistrar {
      */
     void remove(Crate crate);
 
-    boolean open(Crate crate, Player player);
+    boolean open(Crate crate, Player player, Object... objects);
 
     /**
      * Opens a crate and activates effects at the location.
@@ -89,7 +89,7 @@ public interface CrateRegistrar {
      * @param location The location where the opening is based
      * @return true if reward size is not zero, false otherwise.
      */
-    boolean open(Crate crate, Player player, Location location);
+    boolean open(Crate crate, Player player, Location location, Object... objects);
 
     /**
      * Previews a crate in a built-in menu.
