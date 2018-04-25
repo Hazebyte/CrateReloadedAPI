@@ -35,7 +35,7 @@ public enum Tag {
     /**
      * Represents an concatenated broadcast message.
      */
-	BROADCAST_INLINE("inbroadcast"),
+	BROADCAST_INLINE("append"),
     /**
      * Represents a unique reward.
      */

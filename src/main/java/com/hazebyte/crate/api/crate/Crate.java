@@ -387,4 +387,20 @@ public interface Crate extends ConfigurationSerializable {
      * @param rewards the set of rewards that was generated.
      */
     void onRewards(Player player, List<Reward> rewards);
+
+    /**
+     * Returns the message wrapper. This message wrapper holds
+     * the set of messages individually sent to the player.
+     *
+     * @return {@link Message}
+     */
+    Message getOpenMessage();
+
+    /**
+     * Returns the message wrapper. This message wrapper holds
+     * the set of messages sent to every player.
+     *
+     * @return {@link Message}
+     */
+    Message getBroadcast();
 }
