@@ -285,6 +285,20 @@ public interface Crate extends ConfigurationSerializable {
     boolean isPreviewable();
 
     /**
+     * Returns whether the crate has an confirmation toggle.
+     *
+     * @return true if there is an confirmation toggle, false otherwise.
+     */
+    boolean hasConfirmationToggle();
+
+    /**
+     * Sets the toggle that enables or disables the confirmation menu.
+     *
+     * @param bool the toggle.
+     */
+    void setConfirmationToggle(boolean bool);
+
+    /**
      * Returns the set of strings used in an holographic.
      *
      * @return a list of strings, otherwise the empty list.
