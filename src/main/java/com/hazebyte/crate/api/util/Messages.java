@@ -1,19 +1,14 @@
 package com.hazebyte.crate.api.util;
 
+/**
+ * Internal messages
+ */
 public interface Messages {
 
-	String INVALID_CHANCE = "The following is not a number: ";
-	String FEATURE_NOT_ENABLED = "The following feature is not enabled";
-	String PREVIEWFEATURE_NOT_ENABLED = FEATURE_NOT_ENABLED + ": PREVIEW";
-	String MESSAGE_NOT_FOUND = "Message not found: ";
-	String REFRESHED = "%prefix%%green%Refreshed!";
-	String RELOADED = "%prefix%%green%Reload Complete!";
+    String UNAVAILABLE_FEATURE  =   "The following feature is not available: %s";
+    String MESSAGE_NOT_FOUND    =   "The following message key was not found: ";
 
-	String NO_REWARDS = "%prefix%%red%Unable to find any rewards.";
-	String ERROR_PARSING = "%prefix%%red%Error Parsing: ";
-	String ERROR_LOCALE = "%prefix%%red%Error loading locale.";
-	String ERROR_EFFECT = "%prefix%%red%Error loading particle.";
-	String ERROR_LINE = "%prefix%%red%Unable to parse: ";
-
-	String TIME_RESET = "%prefix%Roulette length must be greater than 5 seconds.";
+    String RELOAD               =   "The plugin has been reloaded.";
+    String ERROR                =   "An error has occurred: ";
+    String ERROR_LINE           =   ERROR + "Parsing (%s)";
 }
