@@ -298,6 +298,14 @@ public interface Crate extends ConfigurationSerializable {
      */
     void setConfirmationToggle(boolean bool);
 
+    void setAcceptButton(ItemStack acceptButton);
+
+    ItemStack getAcceptButton();
+
+    void setDeclineButton(ItemStack declineButton);
+
+    ItemStack getDeclineButton();
+
     /**
      * Returns the set of strings used in an holographic.
      *
