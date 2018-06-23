@@ -30,6 +30,14 @@ public interface CrateRegistrar {
     Reward createReward();
 
     /**
+     * Creates a reward using a reward line.
+     *
+     * @param line reward line
+     * @return {@link Reward}
+     */
+    Reward createReward(String line);
+
+    /**
      * Retrieves the specified {@link Crate} with a item.
      * @param item ItemStack
      * @return {@link Crate}

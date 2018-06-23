@@ -9,7 +9,7 @@ import org.bukkit.event.HandlerList;
 /**
  * Represents an event where a crate was set to a location.
  */
-public class BlockSetEvent extends Event implements Cancellable{
+public class BlockSetEvent extends Event implements Cancellable {
 
     private Crate crate;
     private Location location;
