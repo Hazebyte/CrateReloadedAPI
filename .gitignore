@@ -3,6 +3,7 @@
 
 # Gradle
 .gradle
+gradle.properties
 
 # Output
 build/*

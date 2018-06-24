@@ -3,6 +3,7 @@ version '1.0.0'
 
 
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
@@ -32,7 +33,13 @@ repositories {
     maven   {     url = 'http://maven.elmakers.com/repository/'                            }
 }
 
+configurations {
+    deployerJars
+}
+
 dependencies {
+    deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
+
     compile group: 'org.bukkit', name: 'bukkit', version: '1.12.1-R0.1-SNAPSHOT'
     compile group: 'de.slikey', name: 'EffectLib', version: '5.5'
 
@@ -47,3 +54,11 @@ publishing {
     }
 }
 
+uploadArchives {
+    repositories.mavenDeployer {
+        configuration = configurations.deployerJars
+        repository(url: deployRepoUrl) {
+            authentication(userName: deployRepoUsername, password: deployRepoPassword)
+        }
+    }
+}

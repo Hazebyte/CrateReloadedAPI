@@ -3,9 +3,6 @@
 * [Website]() [Examples]() [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
 
 
-* Jenkins [![Build Status](https://ci.hazebyte.com/job/CrateReloadedAPI/badge/icon)](https://ci.hazebyte.com/job/CrateReloadedAPI/) 
-* TravisCI [![Build Status](https://travis-ci.org/imWillX/CrateReloadedAPI.svg?branch=master)](https://travis-ci.org/imWillX/CrateReloadedAPI)
-
 ## Requirements
 
 >- CrateReloaded v2.0.0 or higher
@@ -14,21 +11,27 @@
 
 ## Maven
 ```
+<repository>
+            <url>https://nexus.hazebyte.com/repo/maven-snapshots/</url>
+</repository>
+
 <dependency>
 	<groupId>com.hazebyte</groupId>
 	<artifactId>CrateReloadedAPI</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<type>jar</type>
 </dependency>
 ```
+
 ## Gradle
 ```
 repositories {
     maven   {     
-      url = 'https://nexus.hazebyte.com/repository/maven-snapshots/'          
+      url = 'https://nexus.hazebyte.com/repo/maven-snapshots/'          
     }
 }
+
 dependencies {
-    compile group: 'com.hazebyte', name: "CrateReloadedAPI", version: '1.0.0-SNAPSHOT'
+    compile group: 'com.hazebyte', name: "CrateReloadedAPI", version: '1.0.0'
 }
 ```
