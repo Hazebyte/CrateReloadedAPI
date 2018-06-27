@@ -37,4 +37,8 @@ public class CrateAPI {
 
         return instance;
     }
+
+    public static String getMessage(String key) {
+        return getInstance().getMessage(key);
+    }
 }

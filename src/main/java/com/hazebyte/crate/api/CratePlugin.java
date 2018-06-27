@@ -12,4 +12,6 @@ public interface CratePlugin extends Plugin {
     CrateRegistrar getCrateRegistrar();
 
     BlockCrateRegistrar getBlockCrateRegistrar();
+
+    String getMessage(String key);
 }

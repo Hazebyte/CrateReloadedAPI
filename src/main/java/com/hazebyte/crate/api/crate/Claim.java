@@ -39,10 +39,14 @@ public class Claim {
     }
 
     public Reward getFirstReward() {
-        if (rewards == null) {
-            return null;
+        if (this.hasRewards()) {
+            return rewards.get(0);
         }
-        return rewards.get(0);
+        return null;
+    }
+
+    public boolean hasRewards() {
+        return (rewards != null) && rewards.size() > 0;
     }
 
     public UUID getUUID() {

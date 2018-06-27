@@ -95,9 +95,22 @@ public interface CrateRegistrar {
      * @param crate The crate that will be opened
      * @param player The player who will open the crate
      * @param location The location where the opening is based
+     * @param objects Optional parameters
      * @return true if reward size is not zero, false otherwise.
      */
     boolean open(Crate crate, Player player, Location location, Object... objects);
+
+    /**
+     * Tries to open a crate if there is no confirmation page otherwise
+     * this will first show the confirmation menu.
+     *
+     * @param crate The crate that will be opened
+     * @param player The player who will open the crate
+     * @param location The location where the opening is based
+     * @param objects Optional parameters
+     * @return true if reward size is not zero, false otherwise.
+     */
+    boolean tryOpen(Crate crate, Player player, Location location, Object... objects);
 
     /**
      * Previews a crate in a built-in menu.

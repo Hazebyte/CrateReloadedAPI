@@ -144,6 +144,15 @@ public interface Crate extends ConfigurationSerializable {
     List<Reward> getConstantRewards();
 
     /**
+     * Returns a reward that gives the user this crate.
+     *
+     * @param name The player's name to give the reward to.
+     * @param amount The amount to give.
+     * @return A reward with this crate as a reward.
+     */
+    Reward asReward(String name, int amount);
+
+    /**
      * Uses the built-in reward generator to pick a prize for a player.
      * The reward has to pass the permission check before it is put into
      * the list.
@@ -425,4 +434,5 @@ public interface Crate extends ConfigurationSerializable {
      * @return {@link Message}
      */
     Message getBroadcast();
+
 }
