@@ -1,13 +1,15 @@
 # CrateReloaded API
 
-* [Website]() [Examples]() [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
+* [Website]() 
+* [Examples]() 
+* [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
 
 
 ## Requirements
 
 >- CrateReloaded v2.0.0 or higher
 >- JDK 1.8
->- Gradle
+>- Gradle or Maven
 
 ## Maven
 ```

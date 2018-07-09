@@ -43,7 +43,12 @@ public enum Tag {
     /**
      * Represents a persistent reward.
      */
-	ALWAYS("always");
+	ALWAYS("always"),
+
+	// Legacy
+	LEGACY_PERM("onetime"),
+	LEGACY_MESSAGE("onopen"),
+	LEGACY_PREVENT_DUPLICATE("noduplicate");
 	
 	private final String tag;
 	Tag(String tag) {
