@@ -89,7 +89,7 @@ public abstract class Messenger {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
-        if(!formatted.startsWith(consolePrefix)) {
+        if(!formatted.contains(consolePrefix)) {
             formatted = consolePrefix + formatted;
         }
         logger.info(formatted);
@@ -100,7 +100,7 @@ public abstract class Messenger {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
-        if(!formatted.startsWith(consolePrefix)) {
+        if(!formatted.contains(consolePrefix)) {
             formatted = consolePrefix + formatted;
         }
         logger.warning(formatted);
@@ -111,7 +111,7 @@ public abstract class Messenger {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
-        if(!formatted.startsWith(consolePrefix)) {
+        if(!formatted.contains(consolePrefix)) {
             formatted = consolePrefix + formatted;
         }
 

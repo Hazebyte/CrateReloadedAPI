@@ -402,6 +402,8 @@ public interface Crate extends ConfigurationSerializable {
      */
     void runEffect(Location location, Category category);
 
+    void runEffect(Location location, Category category, Player player);
+
     /**
      * Called whenever a player triggers a win for this crate..
      * Calls {@link Reward#onWin(Player)}
