@@ -202,4 +202,10 @@ public interface Reward extends PluginSerializable {
     void onWin(Player player);
 
     boolean hasPostParsing();
+
+    /**
+     * https://www.artima.com/intv/bloch13.html
+     * @return A copy of the reward.
+     */
+    Reward copy();
 }
