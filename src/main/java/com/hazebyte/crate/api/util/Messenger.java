@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public abstract class Messenger {
 
     public static String prefix = "[Crate] ";
-    private static final String consolePrefix = "[CrateReloaded] ";
+    private static final String consolePrefix = "[CrateReloaded]";
     private static Logger logger = Logger.getLogger("CrateReloaded");
     private static Logger debugger;
     private static boolean DEBUG = false;
@@ -89,9 +89,6 @@ public abstract class Messenger {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
-        if(!formatted.contains(consolePrefix)) {
-            formatted = consolePrefix + formatted;
-        }
         logger.info(formatted);
     }
 
@@ -100,9 +97,6 @@ public abstract class Messenger {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
-        if(!formatted.contains(consolePrefix)) {
-            formatted = consolePrefix + formatted;
-        }
         logger.warning(formatted);
     }
 
@@ -111,10 +105,6 @@ public abstract class Messenger {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
-        if(!formatted.contains(consolePrefix)) {
-            formatted = consolePrefix + formatted;
-        }
-
         logger.severe(formatted);
     }
 
