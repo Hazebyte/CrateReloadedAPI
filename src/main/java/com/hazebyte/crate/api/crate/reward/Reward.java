@@ -200,4 +200,6 @@ public interface Reward extends PluginSerializable {
      * @param player the player to give this reward to.
      */
     void onWin(Player player);
+
+    boolean hasPostParsing();
 }

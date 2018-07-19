@@ -1,5 +1,6 @@
 package com.hazebyte.crate.api.crate.reward;
 
+import com.google.common.base.Strings;
 import com.hazebyte.crate.api.util.Messenger;
 import com.hazebyte.crate.api.util.Messages;
 
@@ -9,11 +10,24 @@ import java.util.List;
 import java.util.Map;
 
 public class RewardLine {
+
 	private String rewardString;
 
 	public RewardLine(String rewardString) {
 		this.rewardString = rewardString.trim();
 	}
+
+	public RewardLine(RewardLine copy) {
+	    this.rewardString = copy.getRewardString();
+    }
+
+	public String getRewardString() {
+	    return rewardString;
+    }
+
+	public boolean isEmpty() {
+	    return Strings.isNullOrEmpty(rewardString);
+    }
 	
 	public Map<Tag, List<String>> parse() {
 		String parts[] = splitTags();
