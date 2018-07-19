@@ -6,26 +6,22 @@ public class CrateTypeTest {
 
     @Test
     public void getSupplyCrate() {
-        CrateType type = CrateType.getType(0);
-        assert CrateType.getType("SUPPLY") == type;
+        assert CrateType.getType("SUPPLY") == CrateType.SUPPLY;
     }
 
     @Test
     public void getMysteryCrate() {
-        CrateType type = CrateType.getType(1);
-        assert CrateType.getType("MYSTERY") == type;
+        assert CrateType.getType("MYSTERY") == CrateType.MYSTERY;
     }
 
     @Test
     public void getKeyCrate() {
-        CrateType type = CrateType.getType(2);
-        assert CrateType.getType("KEY") == type;
+        assert CrateType.getType("KEY") == CrateType.KEY;
     }
 
     @Test
     public void getMenuCrate() {
-        CrateType type = CrateType.getType(3);
-        assert CrateType.getType("MENU") == type;
+        assert CrateType.getType("MENU") == CrateType.MENU;
     }
 
 }
