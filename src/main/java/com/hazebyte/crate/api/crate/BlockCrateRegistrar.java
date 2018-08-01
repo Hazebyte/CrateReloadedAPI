@@ -74,7 +74,7 @@ public interface BlockCrateRegistrar {
      *
      * @param location the location to search for
      * @return a non-null list of crates. If there are no crates,
-     * it'll return the empty set.
+     * it'll return the null.
      */
     List<Crate> getCrates(Location location);
 
@@ -87,13 +87,21 @@ public interface BlockCrateRegistrar {
     Crate getFirstCrate(Location location);
 
     /**
-     * Returns a string representation of a location and crate.
+     * Returns true if the crate exists at the location.
      *
-     * @param location the location that has a listener
-     * @param crate the crate that handles the events
-     * @return a formatted string. If the location or crate is null, it'll
-     * return the empty string.
+     * @param location the location to search for.
+     * @param crate the crate to check.
+     * @return true if it exists, false otherwise.
      */
-    String getSaveKey(Location location, Crate crate);
+    boolean hasCrate(Location location, Crate crate);
 
+    /**
+     * Returns true if there are crates at the location.
+     *
+     * @param location the location to search for.
+     * @return true if there are crates set.
+     */
+    boolean hasCrates(Location location);
+
+    List<Location> getLocations();
 }
