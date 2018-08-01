@@ -54,11 +54,13 @@ publishing {
     }
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        configuration = configurations.deployerJars
-        repository(url: deployRepoUrl) {
-            authentication(userName: deployRepoUsername, password: deployRepoPassword)
+if (project.hasProperty("deployRepoUrl")) {
+    uploadArchives {
+        repositories.mavenDeployer {
+            configuration = configurations.deployerJars
+            repository(url: deployRepoUrl) {
+                authentication(userName: deployRepoUsername, password: deployRepoPassword)
+            }
         }
     }
 }
