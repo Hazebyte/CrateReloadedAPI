@@ -404,6 +404,13 @@ public interface Crate extends ConfigurationSerializable {
 
     void runEffect(Location location, Category category, Player player);
 
+    /**
+     * Stops all effects with the {@link Category#PERSISTENT} at the given location.
+     *
+     * @param location the location at which the effects are to be stopped.
+     */
+    void stopEffect(Location location);
+
     boolean hasEffect(Location location);
 
     /**
