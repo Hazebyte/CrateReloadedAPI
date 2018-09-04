@@ -100,6 +100,20 @@ public interface Reward extends PluginSerializable {
     List<ItemStack> getItems();
 
     /**
+     * Returns the list of formatted items.
+     *
+     * @param player the player to format the items to.
+     * @return the list of formatted items, otherwise the empty list.
+     */
+    List<ItemStack> getItems(Player player);
+
+    /**
+     * Returns whether the list has a set of items.
+     * @return true if there are items, false otherwise.
+     */
+    boolean hasItems();
+
+    /**
      * Sets the list of items.
      *
      * @param items the list to set.
@@ -128,6 +142,14 @@ public interface Reward extends PluginSerializable {
      * @return the list of commands, otherwise the empty list.
      */
     List<String> getCommands();
+
+    /**
+     * Returns the list of commands formatted for the player.
+     *
+     * @param player The player to format the string for.
+     * @return the list of formatted commands, otherwise the empty list.
+     */
+    List<String> getCommands(Player player);
 
     /**
      * Sets the list of commands.
