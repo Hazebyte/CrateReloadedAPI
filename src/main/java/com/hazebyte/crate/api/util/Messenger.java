@@ -1,19 +1,35 @@
 package com.hazebyte.crate.api.util;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class Messenger {
 
     public static String prefix = "[Crate] ";
-    private static final String consolePrefix = "[CrateReloaded]";
     private static Logger logger = Logger.getLogger("CrateReloaded");
     private static Logger debugger;
     private static boolean DEBUG = false;
+
+    public static void setup(Plugin plugin) {
+        logger = plugin.getLogger();
+    }
+
+    public static void setupDebug(Plugin plugin, boolean status) {
+        DEBUG = status;
+        debugger = plugin.getLogger();
+    }
+
+    public static boolean validate() {
+        if (logger == null) {
+            return false;
+        }
+        return true;
+    }
 
     public static void setPrefix(String prefix) {
         Messenger.prefix = prefix;
@@ -21,12 +37,6 @@ public abstract class Messenger {
 
     public static String getPrefix() {
         return prefix;
-    }
-
-    public static void setupDebug(boolean debug) {
-        DEBUG = debug;
-
-        debugger = Logger.getLogger("CrateReloadedDebugger");
     }
 
     public static boolean tell(CommandSender s, String msg) {
@@ -69,10 +79,7 @@ public abstract class Messenger {
             return false;
         }
 
-        msg = Replacer.replace(msg);
-        for(Player p: Players.getOnlinePlayers()) {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
-        }
+        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell(player, msg));
         return true;
     }
 
@@ -81,11 +88,13 @@ public abstract class Messenger {
     }
 
     public static void error(Object msg, StackTraceElement ele) {
-        logger.severe(msg + ": " + ele.getClassName() + "/" + ele.getMethodName() + ":" + ele.getLineNumber());
+        if (validate()) {
+            logger.severe(msg + ": " + ele.getClassName() + "/" + ele.getMethodName() + ":" + ele.getLineNumber());
+        }
     }
 
     public static void info(Object msg) {
-        if (msg == null) {
+        if (msg == null || !validate()) {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
@@ -93,7 +102,7 @@ public abstract class Messenger {
     }
 
     public static void warning(Object msg) {
-        if (msg == null) {
+        if (msg == null || !validate()) {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
@@ -101,7 +110,7 @@ public abstract class Messenger {
     }
 
     public static void severe(Object msg) {
-        if (msg == null) {
+        if (msg == null || !validate()) {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
@@ -109,21 +118,12 @@ public abstract class Messenger {
     }
 
     public static String[] trim(String[] strings) {
-        String[] newStrings = new String[strings.length];
-        int counter = 0;
-        for(String str: strings) {
-            newStrings[counter++] = str.trim();
-        }
-        return newStrings;
+        return Arrays.stream(strings).map(String::trim).toArray(String[]::new);
     }
 
     public static void debug(Object msg) {
-        if(isDebugging()) {
-            debugger.log(Level.INFO, msg.toString());
+        if(DEBUG) {
+            debugger.log(Level.FINE, msg.toString());
         }
-    }
-
-    public static boolean isDebugging() {
-        return DEBUG;
     }
 }
