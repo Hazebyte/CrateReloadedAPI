@@ -1,9 +1,11 @@
 # CrateReloaded API
 
-* [Website]() 
-* [Examples]() 
+* [Build Server](https://ci.hazebyte.com/job/CrateReloadedAPI/)
 * [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
 
+# Projects
+
+* [NPC](https://github.com/Hazebyte/CrateReloadedNPC)
 
 ## Requirements
 
@@ -14,14 +16,14 @@
 ## Maven
 ```
 <repository>
-            <url>https://nexus.hazebyte.com/repo/maven-snapshots/</url>
+    <url>https://nexus.hazebyte.com/repo/maven-snapshots/</url>
 </repository>
 
 <dependency>
-	<groupId>com.hazebyte</groupId>
-	<artifactId>CrateReloadedAPI</artifactId>
-	<version>1.0.0</version>
-	<type>jar</type>
+    <groupId>com.hazebyte</groupId>
+    <artifactId>CrateReloadedAPI</artifactId>
+    <version>1.0.0</version>
+    <type>jar</type>
 </dependency>
 ```
 
