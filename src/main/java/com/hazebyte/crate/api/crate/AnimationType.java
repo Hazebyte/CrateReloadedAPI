@@ -24,7 +24,9 @@ public enum AnimationType {
      * Animation that transitions in a circular motion around a rectangle path.
      */
     RECTANGLE(3),
-    RECTANGLE_REVERSE(4)
+    RECTANGLE_REVERSE(4),
+    HEART(5),
+    SPIN(6)
 
     ;
 
