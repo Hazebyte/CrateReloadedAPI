@@ -446,4 +446,10 @@ public interface Crate extends ConfigurationSerializable {
      */
     Message getBroadcast();
 
+    /**
+     * Returns whether the crate is a placeable item.
+     *
+     * @return true if the item is placeable, false otherwise.
+     */
+    boolean isPlaceable();
 }
