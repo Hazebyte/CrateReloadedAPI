@@ -1,11 +1,23 @@
 # CrateReloaded API
 
+This repository holds the source code to the API for CrateReloaded. Any issues related to the API should be reported here.
+
+* [Main Repository](https://github.com/Hazebyte/CrateReloaded)
 * [Build Server](https://ci.hazebyte.com/job/CrateReloadedAPI/)
 * [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
+
+Click the image below for our Discord channel for other support.
+
+
+[![discord](https://imgur.com/MFRRBn4.png)](https://discord.gg/0srgnnU1nbB8wMML)
 
 # Projects
 
 * [NPC](https://github.com/Hazebyte/CrateReloadedNPC)
+
+Community
+
+* [ShiftOpenKeys](https://github.com/Twi5TeD/ShiftOpenKeys)
 
 ## Requirements
 
