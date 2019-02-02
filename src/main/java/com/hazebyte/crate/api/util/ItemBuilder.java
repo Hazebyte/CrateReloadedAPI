@@ -78,6 +78,18 @@ public class ItemBuilder {
 		return this;
 	}
 
+	public ItemBuilder append(String... lines) {
+		return append(Arrays.asList(lines));
+	}
+
+	public ItemBuilder append(List<String> lines) {
+		ItemMeta meta = this.itemStack.getItemMeta();
+		List<String> lore = meta.getLore();
+		lore.addAll(lines);
+		lore(lore);
+		return this;
+	}
+
 	public ItemBuilder enchants(Map<Enchantment, Integer> enchants) {
 		ItemMeta meta = itemStack.getItemMeta();
 		for(Map.Entry<Enchantment, Integer> entry: enchants.entrySet()) {
