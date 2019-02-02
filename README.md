@@ -15,6 +15,10 @@ Click the image below for our Discord channel for other support.
 
 * [NPC](https://github.com/Hazebyte/CrateReloadedNPC)
 
+Community
+
+* [ShiftOpenKeys](https://github.com/Twi5TeD/ShiftOpenKeys)
+
 ## Requirements
 
 >- CrateReloaded v2.0.0 or higher
