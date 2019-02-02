@@ -9,9 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.Wool;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ItemBuilder {
 
@@ -38,10 +36,17 @@ public class ItemBuilder {
 		this.itemStack = itemStack;
 	}
 
+	public static ItemBuilder clone(ItemStack itemStack) {
+		return of(itemStack.clone());
+	}
+
 	public static ItemBuilder of(ItemStack itemStack) {
-		if (itemStack == null) { return null; }
-		ItemBuilder builder = new ItemBuilder(itemStack);
-		return builder;
+		Optional<ItemStack> optional = Optional.ofNullable(itemStack);
+
+		if (optional.isPresent())
+			return new ItemBuilder(optional.get());
+		else
+			return null;
 	}
 
 	public ItemBuilder type(Material type) {
@@ -84,7 +89,9 @@ public class ItemBuilder {
 
 	public ItemBuilder append(List<String> lines) {
 		ItemMeta meta = this.itemStack.getItemMeta();
-		List<String> lore = meta.getLore();
+		Optional<List<String>> optional = Optional.ofNullable(meta.getLore());
+
+		List<String> lore = optional.orElse(new ArrayList<>());
 		lore.addAll(lines);
 		lore(lore);
 		return this;
