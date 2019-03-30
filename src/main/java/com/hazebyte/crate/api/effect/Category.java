@@ -7,17 +7,22 @@ public enum Category {
     /**
      * State for when a player opens a crate.
      */
-    OPEN(),
+    OPEN,
 
     /**
      * State that represents a boundless course of action.
      */
-    PERSISTENT(),
+    PERSISTENT,
 
     /**
      * State that represents when a player is inside an GUI animation.
      */
-    ANIMATION(),
+    ANIMATION,
+
+    /**
+     * State that represents when a player is pushed back.
+     */
+    PUSHBACK,
 
     /**
      * State that represents when a player closes a GUI animation.

@@ -14,7 +14,7 @@ import org.bukkit.event.HandlerList;
 public class CrateGiveEvent extends Event implements Cancellable {
 
     private CommandSender sender;
-    private Player player;
+    private Player target;
     private Crate crate;
     private int amount;
     private boolean sendAll;
@@ -24,7 +24,7 @@ public class CrateGiveEvent extends Event implements Cancellable {
 
     public CrateGiveEvent(CommandSender sender, Player player, Crate crate, int amount, boolean sendAll) {
         this.sender = sender;
-        this.player = player;
+        this.target = player;
         this.crate = crate;
         this.amount = amount;
         this.sendAll = sendAll;
@@ -35,7 +35,7 @@ public class CrateGiveEvent extends Event implements Cancellable {
     }
 
     public Player getTarget() {
-        return player;
+        return target;
     }
 
     public Crate getCrate() {
