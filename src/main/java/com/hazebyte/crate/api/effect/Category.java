@@ -25,6 +25,11 @@ public enum Category {
     PUSHBACK,
 
     /**
+     * State that represents when a player left clicks a crate.
+     */
+    INSPECT,
+
+    /**
      * State that represents when a player closes a GUI animation.
      */
     END();
