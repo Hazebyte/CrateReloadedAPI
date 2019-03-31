@@ -28,8 +28,6 @@ public interface Crate extends ConfigurationSerializable {
     /**
      * Returns the concatenation of the crate name and the type.
      *
-     * @implNote This implementation may change.
-     *
      * @return the unique identifier
      */
     String getUUID();
@@ -214,7 +212,7 @@ public interface Crate extends ConfigurationSerializable {
     /**
      * Returns the user-set attribute used to generate prizes.
      * If the minimum is greater than the maximum, it'll return
-     * the maximum. i.e. MIN <= MAX.
+     * the maximum.
      *
      * @return minimum number of rewards.
      */
@@ -223,7 +221,7 @@ public interface Crate extends ConfigurationSerializable {
     /**
      * Returns the user-set attribute used to generate prizes.
      * If the maximum is less than the minimum, it'll return
-     * the minimum. i.e. MAX >= MIN.
+     * the minimum.
      *
      * @return maximum number of rewards.
      */
