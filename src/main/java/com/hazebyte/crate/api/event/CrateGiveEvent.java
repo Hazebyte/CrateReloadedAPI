@@ -64,4 +64,8 @@ public class CrateGiveEvent extends Event implements Cancellable {
     public HandlerList getHandlers() {
         return handlerList;
     }
+
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
 }
