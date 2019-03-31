@@ -2,6 +2,7 @@ package com.hazebyte.crate.api.event;
 
 import com.hazebyte.crate.api.crate.Crate;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -14,7 +15,7 @@ import org.bukkit.event.HandlerList;
 public class CrateGiveEvent extends Event implements Cancellable {
 
     private CommandSender sender;
-    private Player target;
+    private OfflinePlayer target;
     private Crate crate;
     private int amount;
     private boolean sendAll;
@@ -22,7 +23,7 @@ public class CrateGiveEvent extends Event implements Cancellable {
 
     private static HandlerList handlerList = new HandlerList();
 
-    public CrateGiveEvent(CommandSender sender, Player player, Crate crate, int amount, boolean sendAll) {
+    public CrateGiveEvent(CommandSender sender, OfflinePlayer player, Crate crate, int amount, boolean sendAll) {
         this.sender = sender;
         this.target = player;
         this.crate = crate;
@@ -34,7 +35,7 @@ public class CrateGiveEvent extends Event implements Cancellable {
         return sender;
     }
 
-    public Player getTarget() {
+    public OfflinePlayer getTarget() {
         return target;
     }
 
