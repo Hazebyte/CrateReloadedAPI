@@ -9,8 +9,8 @@ jobs:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
     environment:
-      CIRCLE_ARTIFACTS: /artifacts
-      CIRCLE_TEST_REPORTS: /test-results
+      CIRCLE_ARTIFACTS: /tmp/artifacts
+      CIRCLE_TEST_REPORTS: /tmp/test-results
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -37,5 +37,5 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
       - store-artifacts:
-          path: $CIRCLE_ARTIFACTS
+          path: /tmp/artifacts
         
