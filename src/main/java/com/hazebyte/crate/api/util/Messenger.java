@@ -93,9 +93,11 @@ public abstract class Messenger {
             TextComponent tc = new TextComponent(str);
             tc.setClickEvent(msg.getClickEvent());
             tc.setHoverEvent(msg.getHoverEvent());
+
             s.spigot().sendMessage(tc);
+        } else {
+            s.spigot().sendMessage(msg);
         }
-        else s.spigot().sendMessage(msg);
         return true;
     }
     
