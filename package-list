@@ -1,0 +1,7 @@
+com.hazebyte.crate.api
+com.hazebyte.crate.api.crate
+com.hazebyte.crate.api.crate.reward
+com.hazebyte.crate.api.effect
+com.hazebyte.crate.api.event
+com.hazebyte.crate.api.exception
+com.hazebyte.crate.api.util
