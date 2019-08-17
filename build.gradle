@@ -4,7 +4,6 @@ version '1.0.0'
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
 
 
 sourceCompatibility = 1.8
@@ -55,10 +54,6 @@ publishing {
             from components.java
         }
     }
-}
-
-signing {
-    sign configurations.archives
 }
 
 if (project.hasProperty("deployRepoUrl")) {
