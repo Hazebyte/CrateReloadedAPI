@@ -6,8 +6,14 @@ import com.hazebyte.crate.api.crate.reward.Reward;
 import java.util.*;
 
 public class Claim {
+
+    /** The list of rewards to be given **/
     private List<Reward> rewards;
+
+    /** The UUID of a player **/
     private UUID uuid;
+
+    /** When this was given **/
     private long timestamp;
 
     public Claim(UUID uuid, List<Reward> rewards) {
