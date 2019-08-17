@@ -5,8 +5,6 @@
 version: 2
 jobs:
   build:
-    branches:
-      ignore: gh-pages
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
@@ -40,4 +38,42 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
       - store-artifacts:
           path: /tmp/artifacts
-        
+  docs-build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run:
+          name: Build Javadocs
+          command: gradle javadoc
+      - persist_to_workspace:
+          root: build/docs
+          paths: javadoc
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: build/docs
+      - run:
+          name: Install and configure dependency
+          command: |
+            npm install -g --silent gh-pages
+      - run:
+          name: Deploy
+          command: gh-pages --dist build/docs/javadoc
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - docs-build
+      - docs-deploy:
+          requires:
+            - build
+            - docs-build
+          filters:
+            branches:
+              only: master
