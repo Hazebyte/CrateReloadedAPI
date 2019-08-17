@@ -3,8 +3,7 @@
 This repository holds the source code to the API for CrateReloaded. Any issues related to the API should be reported here.
 
 * [Main Repository](https://github.com/Hazebyte/CrateReloaded)
-* [Build Server](https://ci.hazebyte.com/job/CrateReloadedAPI/)
-* [Java Docs](https://ci.hazebyte.com/job/CrateReloadedAPI/javadoc/)
+* [Java Docs](https://hazebyte.github.io/CrateReloadedAPI/)
 
 Click the image below for our Discord channel for other support.
 
@@ -25,29 +24,6 @@ Community
 >- JDK 1.8
 >- Gradle or Maven
 
-## Maven
-```
-<repository>
-    <url>https://nexus.hazebyte.com/repo/maven-snapshots/</url>
-</repository>
+## Maven/Gradle
 
-<dependency>
-    <groupId>com.hazebyte</groupId>
-    <artifactId>CrateReloadedAPI</artifactId>
-    <version>1.0.0</version>
-    <type>jar</type>
-</dependency>
-```
-
-## Gradle
-```
-repositories {
-    maven   {     
-      url = 'https://nexus.hazebyte.com/repo/maven-snapshots/'          
-    }
-}
-
-dependencies {
-    compile group: 'com.hazebyte', name: "CrateReloadedAPI", version: '1.0.0'
-}
-```
+resource is temporarily down. [jar](https://28-106483681-gh.circle-artifacts.com/0/tmp/artifacts/CrateReloadedAPI-1.0.0.jar), [source](https://28-106483681-gh.circle-artifacts.com/0/tmp/artifacts/CrateReloadedAPI-1.0.0-sources.jar), [doc](https://28-106483681-gh.circle-artifacts.com/0/tmp/artifacts/CrateReloadedAPI-1.0.0-javadoc.jar)
