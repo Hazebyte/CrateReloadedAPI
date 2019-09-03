@@ -50,7 +50,7 @@ public class RewardLine {
 				tag = Tag.getTagFromValue(tagValue);
 				section = currentLine.substring(firstSection, secondSection);
 			} catch(Exception e) {
-				Messenger.info(Messages.ERROR_LINE + currentLine);
+				Messenger.info(String.format(Messages.ERROR_LINE, currentLine));
 			}
 
 			List<String> stringList;

@@ -13,8 +13,8 @@ public interface Messages {
     String WARNING_S                    =   WARNING + " %s";
     String WARNING_S_INFO               =   WARNING + " %s [see %s]";
     String ERROR                        =   "&4An error has occurred: &f";
-    String ERROR_LINE                   =   ERROR + "Parsing (%s)";
-    String ERROR_LINE_INFO              =   ERROR + "Parsing (%s) [see %s]";
+    String ERROR_LINE                   =   ERROR + "Parsing \"%s\"";
+    String ERROR_LINE_INFO              =   ERROR + "Parsing \"%s\" [see %s]";
     String FORMAT                       =   "Please check the format: ";
-    String FORMAT_ITEM                  =   FORMAT + "ITEM (%s) [see %s]";
+    String FORMAT_ITEM                  =   FORMAT + "ITEM \"%s\" [see %s]";
 }
