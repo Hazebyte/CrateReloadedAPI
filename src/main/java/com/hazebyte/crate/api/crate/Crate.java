@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Represents a crate
@@ -427,6 +428,10 @@ public interface Crate extends ConfigurationSerializable {
      * @param rewards the set of rewards that was generated.
      */
     void onRewards(Player player, List<Reward> rewards);
+
+    void onRewards(Player player, List<Reward> rewards, Location location);
+
+    void onRewards(Player player, List<Reward> rewards, Location location, Consumer consumer);
 
     /**
      * Returns the message wrapper. This message wrapper holds
