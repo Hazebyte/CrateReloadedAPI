@@ -72,8 +72,8 @@ public abstract class Messenger {
         return tell((CommandSender) player, msg);
     }
     
-    public static boolean tell (CommandSender s, TextComponent msg) {
-        if ((s == null) || msg == null || msg.equals("")) {
+    public static boolean tell (CommandSender sender, TextComponent msg) {
+        if ((sender == null) || msg == null || msg.equals("")) {
             return false;
         }
         
@@ -81,22 +81,25 @@ public abstract class Messenger {
             info(msg);
             return false;
         }
-        
-        if (s instanceof Player) {
-            msg.setText(Replacer.replace(msg.getText(), (Player) s));
-        }
-        
-        msg.setText(Replacer.replace(msg.getText()));
-        
-        String[] parts = msg.getText().split("\\\\n+");
-        if (parts.length > 0) for (String str : parts) {
-            TextComponent tc = new TextComponent(str);
-            tc.setClickEvent(msg.getClickEvent());
-            tc.setHoverEvent(msg.getHoverEvent());
 
-            s.spigot().sendMessage(tc);
+        msg.setText(Replacer.replace(msg.getText()));
+
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            msg.setText(Replacer.replace(msg.getText(), player));
+
+            String[] parts = msg.getText().split("\\\\n+");
+            if (parts.length > 0) for (String str : parts) {
+                TextComponent tc = new TextComponent(str);
+                tc.setClickEvent(msg.getClickEvent());
+                tc.setHoverEvent(msg.getHoverEvent());
+
+                player.spigot().sendMessage(tc);
+            } else {
+                player.spigot().sendMessage(msg);
+            }
         } else {
-            s.spigot().sendMessage(msg);
+            sender.sendMessage(msg.getText());
         }
         return true;
     }
