@@ -1,5 +1,7 @@
 package com.hazebyte.crate.api.util;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -87,6 +89,10 @@ public abstract class Messenger {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             msg.setText(Replacer.replace(msg.getText(), player));
+
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                msg.setText(PlaceholderAPI.setPlaceholders(player, msg.getText()));
+            }
 
             String[] parts = msg.getText().split("\\\\n+");
             if (parts.length > 0) for (String str : parts) {
