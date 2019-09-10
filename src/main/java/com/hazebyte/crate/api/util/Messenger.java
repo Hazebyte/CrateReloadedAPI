@@ -1,6 +1,7 @@
 package com.hazebyte.crate.api.util;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -73,12 +74,25 @@ public abstract class Messenger {
     public static boolean tell (Player player, String msg) {
         return tell((CommandSender) player, msg);
     }
+
+    public static boolean tell (CommandSender sender, BaseComponent... msg) {
+        if (sender == null || msg == null) {
+            return false;
+        }
+
+        Arrays.asList(msg).forEach((m) -> {
+            if (m != null && m instanceof TextComponent) {
+                tell(sender, (TextComponent) m);
+            }
+        });
+        return true;
+    }
     
     public static boolean tell (CommandSender sender, TextComponent msg) {
         if ((sender == null) || msg == null || msg.equals("")) {
             return false;
         }
-        
+
         if (msg.getText().contains(Messages.MESSAGE_NOT_FOUND)) {
             info(msg);
             return false;
