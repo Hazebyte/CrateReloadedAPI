@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import net.md_5.bungee.api.chat.TextComponent;
 
+import javax.xml.soap.Text;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -112,9 +113,19 @@ public abstract class Messenger {
         }
         return true;
     }
-    
+
+    public static boolean broadcast (BaseComponent... components) {
+        if (components == null || components.length == 0) {
+            return false;
+        }
+        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> {
+            Arrays.stream(components).forEach((comp) -> tell((CommandSender) player, comp));
+        });
+        return true;
+    }
+
     public static boolean broadcast (TextComponent msg) {
-        if (msg.getText().equals("")) {
+        if (msg == null || msg.getText().equals("")) {
             return false;
         }
         
@@ -123,15 +134,23 @@ public abstract class Messenger {
     }
     
     public static boolean broadcast (String msg) {
-        if (msg.equals("")) {
+        if (msg == null || msg.equals("")) {
             return false;
         }
-        
-        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell(player, msg));
+
+        TextComponent component = new TextComponent(msg);
+        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell((CommandSender) player, component));
         return true;
     }
     
     public static boolean broadcast (Object msg) {
+        if (msg == null || msg.equals("")) {
+            return false;
+        }
+
+        if (msg instanceof BaseComponent) {
+            return broadcast((BaseComponent) msg, null); // Hack
+        }
         return broadcast(msg.toString());
     }
     
