@@ -40,39 +40,28 @@ public abstract class Messenger {
         Messenger.prefix = prefix;
     }
     
-    public static boolean tell (CommandSender s, String msg) {
-        if ((s == null) || msg == null || msg.equals("")) {
-            return false;
-        }
-        
-        if (msg.contains(Messages.MESSAGE_NOT_FOUND)) {
-            info(msg);
-            return false;
-        }
-        
-        if (s instanceof Player) {
-            msg = Replacer.replace(msg, (Player) s);
-        }
-        
-        msg = Replacer.replace(msg);
-        
-        String[] parts = msg.split("\\\\n+");
-        if (parts.length > 0) for (String str : parts)
-            s.sendMessage(str);
-        else s.sendMessage(msg);
-        return true;
+    public static boolean tell (CommandSender sender, String msg) {
+        TextComponent component = new TextComponent(msg);
+        return tell(sender, component);
     }
     
     public static boolean tell (CommandSender player, Object msg) {
+        if (msg instanceof BaseComponent) {
+            return Messenger.tell(player, (BaseComponent) msg);
+        }
         return tell(player, msg.toString());
     }
     
     public static boolean tell (Player player, Object msg) {
-        return tell((CommandSender) player, msg.toString());
+        return tell((CommandSender) player, msg);
     }
     
     public static boolean tell (Player player, String msg) {
         return tell((CommandSender) player, msg);
+    }
+
+    public static boolean tell(CommandSender sender, BaseComponent msg) {
+        return tell(sender, msg, null); // Hack to handle overloading call
     }
 
     public static boolean tell (CommandSender sender, BaseComponent... msg) {
