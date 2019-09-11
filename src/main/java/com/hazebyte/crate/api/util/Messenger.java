@@ -72,7 +72,7 @@ public abstract class Messenger {
         
         for (BaseComponent m : msg) {
             if (m instanceof TextComponent) {
-                tell(sender, m);
+                tell(sender, (TextComponent) m);
             }
         }
         return true;
