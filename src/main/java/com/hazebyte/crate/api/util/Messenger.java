@@ -69,12 +69,12 @@ public abstract class Messenger {
         if (sender == null || msg == null) {
             return false;
         }
-
-        Arrays.asList(msg).forEach((m) -> {
-            if (m != null && m instanceof TextComponent) {
-                tell(sender, (TextComponent) m);
+        
+        for (BaseComponent m : msg) {
+            if (m instanceof TextComponent) {
+                tell(sender, m);
             }
-        });
+        }
         return true;
     }
     
@@ -118,9 +118,12 @@ public abstract class Messenger {
         if (components == null || components.length == 0) {
             return false;
         }
-        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> {
-            Arrays.stream(components).forEach((comp) -> tell((CommandSender) player, comp));
-        });
+        
+        for (Player player : Players.getOnlinePlayers()) {
+            for (BaseComponent component : components) {
+                tell((CommandSender) player, component);
+            }
+        }
         return true;
     }
 
@@ -129,7 +132,7 @@ public abstract class Messenger {
             return false;
         }
         
-        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell((CommandSender) player, msg));
+        Bukkit.getOnlinePlayers().forEach(player->tell((CommandSender) player, msg));
         return true;
     }
     
@@ -139,7 +142,7 @@ public abstract class Messenger {
         }
 
         TextComponent component = new TextComponent(msg);
-        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell((CommandSender) player, component));
+        Bukkit.getOnlinePlayers().forEach(player->tell((CommandSender) player, component));
         return true;
     }
     
