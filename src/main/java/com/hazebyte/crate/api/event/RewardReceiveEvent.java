@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Called when a player opens a crate.
  */
-public class CrateOpenEvent extends Event implements Cancellable {
+public class RewardReceiveEvent extends Event implements Cancellable {
 
     private static HandlerList handlers = new HandlerList();
     private Player player;
@@ -23,7 +23,7 @@ public class CrateOpenEvent extends Event implements Cancellable {
 
     private boolean cancelled;
 
-    public CrateOpenEvent(Crate crate, Player player, Location location, List<Reward> rewards) {
+    public RewardReceiveEvent(Crate crate, Player player, Location location, List<Reward> rewards) {
         this.crate = crate;
         this.player = player;
         this.location = location;

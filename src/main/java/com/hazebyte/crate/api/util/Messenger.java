@@ -1,10 +1,14 @@
 package com.hazebyte.crate.api.util;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+import net.md_5.bungee.api.chat.BaseComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import net.md_5.bungee.api.chat.TextComponent;
 
+import javax.xml.soap.Text;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,89 +41,119 @@ public abstract class Messenger {
         Messenger.prefix = prefix;
     }
     
-    public static boolean tell (CommandSender s, String msg) {
-        if ((s == null) || msg == null || msg.equals("")) {
-            return false;
-        }
-        
-        if (msg.contains(Messages.MESSAGE_NOT_FOUND)) {
-            info(msg);
-            return false;
-        }
-        
-        if (s instanceof Player) {
-            msg = Replacer.replace(msg, (Player) s);
-        }
-        
-        msg = Replacer.replace(msg);
-        
-        String[] parts = msg.split("\\\\n+");
-        if (parts.length > 0) for (String str : parts)
-            s.sendMessage(str);
-        else s.sendMessage(msg);
-        return true;
+    public static boolean tell (CommandSender sender, String msg) {
+        TextComponent component = new TextComponent(msg);
+        return tell(sender, component);
     }
     
     public static boolean tell (CommandSender player, Object msg) {
+        if (msg instanceof BaseComponent) {
+            return Messenger.tell(player, (BaseComponent) msg);
+        }
         return tell(player, msg.toString());
     }
     
     public static boolean tell (Player player, Object msg) {
-        return tell((CommandSender) player, msg.toString());
+        return tell((CommandSender) player, msg);
     }
     
     public static boolean tell (Player player, String msg) {
         return tell((CommandSender) player, msg);
     }
-    
-    public static boolean tell (CommandSender s, TextComponent msg) {
-        if ((s == null) || msg == null || msg.equals("")) {
+
+    public static boolean tell(CommandSender sender, BaseComponent msg) {
+        return tell(sender, msg, null); // Hack to handle overloading call
+    }
+
+    public static boolean tell (CommandSender sender, BaseComponent... msg) {
+        if (sender == null || msg == null) {
             return false;
         }
         
+        for (BaseComponent m : msg) {
+            if (m instanceof TextComponent) {
+                tell(sender, (TextComponent) m);
+            }
+        }
+        return true;
+    }
+    
+    public static boolean tell (CommandSender sender, TextComponent msg) {
+        if ((sender == null) || msg == null || msg.equals("")) {
+            return false;
+        }
+
         if (msg.getText().contains(Messages.MESSAGE_NOT_FOUND)) {
             info(msg);
             return false;
         }
-        
-        if (s instanceof Player) {
-            msg.setText(Replacer.replace(msg.getText(), (Player) s));
-        }
-        
-        msg.setText(Replacer.replace(msg.getText()));
-        
-        String[] parts = msg.getText().split("\\\\n+");
-        if (parts.length > 0) for (String str : parts) {
-            TextComponent tc = new TextComponent(str);
-            tc.setClickEvent(msg.getClickEvent());
-            tc.setHoverEvent(msg.getHoverEvent());
 
-            s.spigot().sendMessage(tc);
+        msg.setText(Replacer.replace(msg.getText()));
+
+        if (sender instanceof Player) {
+            Player player = (Player) sender;
+            msg.setText(Replacer.replace(msg.getText(), player));
+
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                msg.setText(PlaceholderAPI.setPlaceholders(player, msg.getText()));
+            }
+
+            String[] parts = msg.getText().split("\\\\n+");
+            if (parts.length > 0) for (String str : parts) {
+                TextComponent tc = new TextComponent(str);
+                tc.setClickEvent(msg.getClickEvent());
+                tc.setHoverEvent(msg.getHoverEvent());
+
+                player.spigot().sendMessage(tc);
+            } else {
+                player.spigot().sendMessage(msg);
+            }
         } else {
-            s.spigot().sendMessage(msg);
+            sender.sendMessage(msg.getText());
         }
         return true;
     }
-    
-    public static boolean broadcast (TextComponent msg) {
-        if (msg.getText().equals("")) {
+
+    public static boolean broadcast (BaseComponent... components) {
+        if (components == null || components.length == 0) {
             return false;
         }
         
-        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell((CommandSender) player, msg));
+        for (Player player : Players.getOnlinePlayers()) {
+            for (BaseComponent component : components) {
+                tell((CommandSender) player, component);
+            }
+        }
+        return true;
+    }
+
+    public static boolean broadcast (TextComponent msg) {
+        if (msg == null || msg.getText().equals("")) {
+            return false;
+        }
+        
+        Bukkit.getOnlinePlayers().forEach(player->tell((CommandSender) player, msg));
         return true;
     }
     
     public static boolean broadcast (String msg) {
-        if (msg.equals("")) {
+        if (msg == null || msg.equals("")) {
             return false;
         }
-        
-        Arrays.stream(Players.getOnlinePlayers()).forEach((player) -> tell(player, msg));
+
+        TextComponent component = new TextComponent(msg);
+        Bukkit.getOnlinePlayers().forEach(player->tell((CommandSender) player, component));
         return true;
     }
     
     public static boolean broadcast (Object msg) {
+        if (msg == null || msg.equals("")) {
+            return false;
+        }
+
+        if (msg instanceof BaseComponent) {
+            return broadcast((BaseComponent) msg, null); // Hack
+        }
         return broadcast(msg.toString());
     }
     
