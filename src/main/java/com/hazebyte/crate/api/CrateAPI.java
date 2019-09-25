@@ -1,6 +1,7 @@
 package com.hazebyte.crate.api;
 
 import com.hazebyte.crate.api.crate.BlockCrateRegistrar;
+import com.hazebyte.crate.api.crate.ClaimRegistrar;
 import com.hazebyte.crate.api.crate.CrateRegistrar;
 
 import java.io.File;
@@ -20,6 +21,10 @@ public class CrateAPI {
 
     public static BlockCrateRegistrar getBlockCrateRegistrar() {
         return getInstance().getBlockCrateRegistrar();
+    }
+
+    public static ClaimRegistrar getClaimRegistrar() {
+        return getInstance().getClaimRegistrar();
     }
 
     public static boolean hasImplementation() {
