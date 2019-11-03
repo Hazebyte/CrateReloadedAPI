@@ -100,7 +100,7 @@ public abstract class Messenger {
 
             String[] parts = msg.getText().split("\\\\n+");
             if (parts.length > 0) for (String str : parts) {
-                TextComponent tc = new TextComponent(str);
+                TextComponent tc = new TextComponent(TextComponent.fromLegacyText(str));
                 tc.setClickEvent(msg.getClickEvent());
                 tc.setHoverEvent(msg.getHoverEvent());
 
