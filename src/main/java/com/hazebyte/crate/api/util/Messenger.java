@@ -61,20 +61,11 @@ public abstract class Messenger {
         return tell((CommandSender) player, msg);
     }
 
-    public static boolean tell(CommandSender sender, BaseComponent msg) {
-        return tell(sender, msg, null); // Hack to handle overloading call
-    }
-
-    public static boolean tell (CommandSender sender, BaseComponent... msg) {
-        if (sender == null || msg == null) {
+    public static boolean tell (CommandSender sender, BaseComponent... components) {
+        if (sender == null || components == null) {
             return false;
         }
-        
-        for (BaseComponent m : msg) {
-            if (m instanceof TextComponent) {
-                tell(sender, (TextComponent) m);
-            }
-        }
+        sender.spigot().sendMessage(components);
         return true;
     }
     
@@ -152,7 +143,7 @@ public abstract class Messenger {
         }
 
         if (msg instanceof BaseComponent) {
-            return broadcast((BaseComponent) msg, null); // Hack
+            return broadcast(msg, null); // Hack
         }
         return broadcast(msg.toString());
     }
