@@ -112,7 +112,7 @@ public abstract class Messenger {
         
         for (Player player : Players.getOnlinePlayers()) {
             for (BaseComponent component : components) {
-                tell((CommandSender) player, (BaseComponent) component);
+                tell((CommandSender) player, component);
             }
         }
         return true;
@@ -143,7 +143,7 @@ public abstract class Messenger {
         }
 
         if (msg instanceof BaseComponent) {
-            return broadcast(msg, null); // Hack
+            return broadcast(msg, (BaseComponent) null); // Hack
         }
         return broadcast(msg.toString());
     }
