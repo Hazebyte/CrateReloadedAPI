@@ -143,7 +143,7 @@ public abstract class Messenger {
         }
 
         if (msg instanceof BaseComponent) {
-            return broadcast(msg, (BaseComponent) null); // Hack
+            return broadcast((BaseComponent) msg, null); // Hack
         }
         return broadcast(msg.toString());
     }
