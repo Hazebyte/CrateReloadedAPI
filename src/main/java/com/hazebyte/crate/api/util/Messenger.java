@@ -112,7 +112,7 @@ public abstract class Messenger {
         
         for (Player player : Players.getOnlinePlayers()) {
             for (BaseComponent component : components) {
-                tell((CommandSender) player, component);
+                tell((CommandSender) player, (BaseComponent) component);
             }
         }
         return true;
