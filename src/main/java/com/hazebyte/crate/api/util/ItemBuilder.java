@@ -147,7 +147,7 @@ public class ItemBuilder {
 
 	public ItemBuilder unbreakable(boolean unbreakable) {
 		ItemMeta meta = itemStack.getItemMeta();
-		meta.setUnbreakable(unbreakable);
+		meta.spigot().setUnbreakable(unbreakable);
 		this.itemStack.setItemMeta(meta);
 		return this;
 	}
