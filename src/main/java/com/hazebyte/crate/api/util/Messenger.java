@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import net.md_5.bungee.api.chat.TextComponent;
 
-import javax.xml.soap.Text;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
