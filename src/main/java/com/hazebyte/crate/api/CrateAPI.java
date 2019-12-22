@@ -2,11 +2,13 @@ package com.hazebyte.crate.api;
 
 import com.hazebyte.crate.api.crate.BlockCrateRegistrar;
 import com.hazebyte.crate.api.crate.CrateRegistrar;
+import org.bukkit.Bukkit;
 
 import java.io.File;
 
 public class CrateAPI {
     private static CratePlugin instance;
+    public static String SERVER_VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 
     private CrateAPI() {}
 

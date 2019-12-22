@@ -1,5 +1,6 @@
 package com.hazebyte.crate.api.util;
 
+import com.hazebyte.crate.api.CrateAPI;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -9,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.Wool;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class ItemBuilder {
@@ -147,7 +149,22 @@ public class ItemBuilder {
 
 	public ItemBuilder unbreakable(boolean unbreakable) {
 		ItemMeta meta = itemStack.getItemMeta();
-		meta.spigot().setUnbreakable(unbreakable);
+		if (CrateAPI.SERVER_VERSION.contains("1_8")) {
+			try {
+				Class metaClazz = Class.forName("org.bukkit.craftbukkit." + CrateAPI.SERVER_VERSION + ".inventory.CraftMetaItem");
+				Method spigotMethod = metaClazz.getDeclaredMethod("spigot");
+				spigotMethod.setAccessible(true);
+				Object spigotClazz = spigotMethod.invoke(meta);
+				Method setUnbreakable = spigotClazz.getClass().getMethod("setUnbreakable", boolean.class);
+				setUnbreakable.setAccessible(true);
+				setUnbreakable.invoke(spigotClazz, unbreakable);
+			} catch (Exception e) {
+				Messenger.severe("Failed to set unbreakable.");
+				e.printStackTrace();
+			}
+		} else {
+			meta.setUnbreakable(unbreakable);
+		}
 		this.itemStack.setItemMeta(meta);
 		return this;
 	}
