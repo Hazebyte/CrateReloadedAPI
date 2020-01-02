@@ -45,6 +45,7 @@ configurations {
 dependencies {
     deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
 
+//    compile group: 'org.spigotmc', name: 'spigot-api', version: '1.15.1-R0.1-SNAPSHOT'
     compile group: 'org.spigotmc', name: 'spigot-api', version: '1.12.1-R0.1-SNAPSHOT'
 //    compile group: 'org.spigotmc', name: 'spigot-api', version: '1.8.8-R0.1-SNAPSHOT'
     compile group: 'de.slikey', name: 'EffectLib', version: '5.5'
