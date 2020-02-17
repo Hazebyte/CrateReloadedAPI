@@ -15,6 +15,21 @@ import java.util.*;
 
 public class ItemBuilder {
 
+	private static final Map<String, Class<?>> classCache = new HashMap<>();
+	private static final Map<String, Method> methodCache = new HashMap<>();
+
+	static {
+		classCache.put("ItemMeta", ItemMeta.class);
+
+		if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+			try {
+				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData", Integer.class));
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	private ItemStack itemStack;
 
 	public ItemBuilder(Material type) {
@@ -200,6 +215,19 @@ public class ItemBuilder {
 		if (glowing) {
 			unsafeEnchant(itemStack.getType() != Material.BOW ? Enchantment.ARROW_INFINITE : Enchantment.LUCK, 10);
 			flag(ItemFlag.HIDE_ENCHANTS);
+		}
+		return this;
+	}
+
+	public ItemBuilder setCustomModelData(Integer data) {
+		try {
+			if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+				ItemMeta meta = itemStack.getItemMeta();
+				Method method = methodCache.get("setCustomModelData");
+				method.invoke(meta, data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return this;
 	}
