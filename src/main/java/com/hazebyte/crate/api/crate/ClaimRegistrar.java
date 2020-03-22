@@ -1,8 +1,10 @@
 package com.hazebyte.crate.api.crate;
 
+import com.hazebyte.crate.api.CrateAPI;
 import com.hazebyte.crate.api.crate.reward.Reward;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -53,4 +55,9 @@ public interface ClaimRegistrar {
 
     void save(UUID uuid);
 
+    static Claim parse(UUID uuid, String timestamp, List<String> lines) {
+        List<Reward> rewards = new ArrayList<>();
+        for (String line: lines) rewards.add(CrateAPI.getCrateRegistrar().createReward(line));
+        return new Claim(uuid, Long.valueOf(timestamp), rewards);
+    }
 }

@@ -64,21 +64,13 @@ public class Claim {
     }
 
     public List<String> serialize() {
-        List<String> rewardsAsString = new LinkedList<>();
-        this.rewards.forEach(reward -> {
-            rewardsAsString.add(reward.serialize());
-        });
-        return rewardsAsString;
+        List<String> lines = new ArrayList<>();
+        for (Reward reward: rewards) lines.add(reward.serialize());
+        return lines;
     }
 
-    public static Claim parse(UUID uuid, String timestamp, List<String> rewardLines) {
-        List<Reward> rewards = new ArrayList<>();
-        for (String string: rewardLines) {
-            Reward reward = CrateAPI.getCrateRegistrar().createReward(string);
-            rewards.add(reward);
-        }
-
-        Claim claim = new Claim(uuid, Long.valueOf(timestamp), rewards);
-        return claim;
+    @Deprecated
+    public static Claim parse(UUID uuid, String timestamp, List<String> lines) {
+        return ClaimRegistrar.parse(uuid, timestamp, lines);
     }
 }
