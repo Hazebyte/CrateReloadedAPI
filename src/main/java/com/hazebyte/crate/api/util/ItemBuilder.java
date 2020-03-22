@@ -21,10 +21,12 @@ public class ItemBuilder {
 	static {
 		classCache.put("ItemMeta", ItemMeta.class);
 
-		try {
-			methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData", Integer.class));
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+		if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+			try {
+				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData", Integer.class));
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
