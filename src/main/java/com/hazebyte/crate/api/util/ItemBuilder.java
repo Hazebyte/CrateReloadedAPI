@@ -1,5 +1,6 @@
 package com.hazebyte.crate.api.util;
 
+import com.hazebyte.crate.api.CrateAPI;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -9,9 +10,25 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.Wool;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class ItemBuilder {
+
+	private static final Map<String, Class<?>> classCache = new HashMap<>();
+	private static final Map<String, Method> methodCache = new HashMap<>();
+
+	static {
+		classCache.put("ItemMeta", ItemMeta.class);
+
+		if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+			try {
+				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData", Integer.class));
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	private ItemStack itemStack;
 
@@ -147,7 +164,22 @@ public class ItemBuilder {
 
 	public ItemBuilder unbreakable(boolean unbreakable) {
 		ItemMeta meta = itemStack.getItemMeta();
-		meta.setUnbreakable(unbreakable);
+		if (CrateAPI.SERVER_VERSION.contains("1_8")) {
+			try {
+				Class metaClazz = Class.forName("org.bukkit.craftbukkit." + CrateAPI.SERVER_VERSION + ".inventory.CraftMetaItem");
+				Method spigotMethod = metaClazz.getDeclaredMethod("spigot");
+				spigotMethod.setAccessible(true);
+				Object spigotClazz = spigotMethod.invoke(meta);
+				Method setUnbreakable = spigotClazz.getClass().getMethod("setUnbreakable", boolean.class);
+				setUnbreakable.setAccessible(true);
+				setUnbreakable.invoke(spigotClazz, unbreakable);
+			} catch (Exception e) {
+				Messenger.severe("Failed to set unbreakable.");
+				e.printStackTrace();
+			}
+		} else {
+			meta.setUnbreakable(unbreakable);
+		}
 		this.itemStack.setItemMeta(meta);
 		return this;
 	}
@@ -183,6 +215,19 @@ public class ItemBuilder {
 		if (glowing) {
 			unsafeEnchant(itemStack.getType() != Material.BOW ? Enchantment.ARROW_INFINITE : Enchantment.LUCK, 10);
 			flag(ItemFlag.HIDE_ENCHANTS);
+		}
+		return this;
+	}
+
+	public ItemBuilder setCustomModelData(Integer data) {
+		try {
+			if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+				ItemMeta meta = itemStack.getItemMeta();
+				Method method = methodCache.get("setCustomModelData");
+				method.invoke(meta, data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return this;
 	}

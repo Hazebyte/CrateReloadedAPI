@@ -32,5 +32,11 @@ public enum Category {
     /**
      * State that represents when a player closes a GUI animation.
      */
-    END();
+    END,
+
+    /**
+     * State that represents when a player receives a reward.
+     */
+    REWARD
+    ;
 }
