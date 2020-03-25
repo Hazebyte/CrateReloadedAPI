@@ -15,15 +15,17 @@ public interface ClaimRegistrar {
      * @param uuid UUID of the player
      * @param timestamp the timestamp at which the claim was given
      * @param rewards the list of claims
+     * @return the claim that was added
      */
-    void addClaim(UUID uuid, long timestamp, Reward... rewards);
+    Claim addClaim(UUID uuid, long timestamp, Reward... rewards);
 
     /**
      * Removes the claim for a player
      * @param uuid UUID of the player
      * @param timestamp the timestamp at which the claim was given
+     * @return the claim that was removed
      */
-    void removeClaim(UUID uuid, long timestamp);
+    Claim removeClaim(UUID uuid, long timestamp);
 
     /**
      * Returns the claim of the specific timestamp for the player.
@@ -48,12 +50,10 @@ public interface ClaimRegistrar {
 
     /**
      * Allows a spoofer to open another person's claim inventory
-     * @param player
-     * @param spoofer
+     * @param player The player who's claim menu to open
+     * @param spoofer The user to open the inventory for
      */
     void openInventorySpoof(Player player, Player spoofer);
-
-    void save(UUID uuid);
 
     static Claim parse(UUID uuid, String timestamp, List<String> lines) {
         List<Reward> rewards = new ArrayList<>();
