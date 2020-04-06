@@ -19,6 +19,8 @@ public interface ClaimRegistrar {
      */
     Claim addClaim(UUID uuid, long timestamp, Reward... rewards);
 
+    Claim addClaim(Claim claim);
+
     /**
      * Removes the claim for a player
      * @param uuid UUID of the player
@@ -26,6 +28,8 @@ public interface ClaimRegistrar {
      * @return the claim that was removed
      */
     Claim removeClaim(UUID uuid, long timestamp);
+
+    Claim removeClaim(Claim claim);
 
     /**
      * Returns the claim of the specific timestamp for the player.
