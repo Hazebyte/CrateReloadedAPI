@@ -7,6 +7,7 @@ import org.bukkit.event.HandlerList;
 
 /**
  * Represents an event that is called when a player tries to claim a reward.
+ * If this event is cancelled, it is not removed from the data store.
  */
 public class ClaimEvent extends Event implements Cancellable {
 

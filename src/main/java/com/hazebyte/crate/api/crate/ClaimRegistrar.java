@@ -40,6 +40,12 @@ public interface ClaimRegistrar {
     Claim getClaim(UUID uuid, long timestamp);
 
     /**
+     * Checks whether the claim is still valid
+     * @return true if the player has a claim and false otherwise>
+     */
+    boolean hasClaim(UUID uuid, long timestamp);
+
+    /**
      * Returns a list of claims. If there are no claims for the user, it will return an empty list.
      * @param uuid The UUID of the player
      * @return an array list of claims
