@@ -225,6 +225,7 @@ public class ItemBuilder {
 				ItemMeta meta = itemStack.getItemMeta();
 				Method method = methodCache.get("setCustomModelData");
 				method.invoke(meta, data);
+				this.itemStack.setItemMeta(meta);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
