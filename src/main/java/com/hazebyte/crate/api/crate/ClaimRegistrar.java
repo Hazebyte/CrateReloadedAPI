@@ -46,11 +46,18 @@ public interface ClaimRegistrar {
     void openInventory(Player player);
 
     /**
-     * Allows a spoofer to open another person's claim inventory.
-     * @param player The player who's claim menu to open
-     * @param spoofer The user to open the inventory for
+     * Allows an user to open another person's claim inventory.
+     * @param player The player that the claim inventory belongs to
+     * @param spoofer The player that will open the inventory
      */
     void openInventorySpoof(Player player, Player spoofer);
+
+    /**
+     * Allows an user to open another person's claim inventory.
+     * @param player The UUID of the player that the claim inventory belongs to
+     * @param spoofer The player that will open the inventory
+     */
+    void openInventorySpoof(UUID player, Player spoofer);
 
     /**
      * This forces a write to disk.
