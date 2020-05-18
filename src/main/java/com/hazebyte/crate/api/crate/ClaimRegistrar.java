@@ -11,24 +11,17 @@ import java.util.UUID;
 public interface ClaimRegistrar {
 
     /**
-     * Adds a claim for a player
-     * @param uuid UUID of the player
-     * @param timestamp the timestamp at which the claim was given
-     * @param rewards the list of claims
-     * @return the claim that was added
+     * Add a claim for a player
+     *
+     * @return The claim that was added to the player
      */
-    Claim addClaim(UUID uuid, long timestamp, Reward... rewards);
-
     Claim addClaim(Claim claim);
 
     /**
      * Removes the claim for a player
-     * @param uuid UUID of the player
-     * @param timestamp the timestamp at which the claim was given
-     * @return the claim that was removed
+     *
+     * @return The claim that was removed from the player. If no claim was removed, this returns null.
      */
-    Claim removeClaim(UUID uuid, long timestamp);
-
     Claim removeClaim(Claim claim);
 
     /**
