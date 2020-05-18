@@ -33,7 +33,7 @@ public interface ClaimRegistrar {
     Claim getClaim(UUID uuid, long timestamp);
 
     /**
-     * Checks whether the claim is still valid
+     * Checks whether the claim is still valid.
      * @return true if the player has a claim and false otherwise>
      */
     boolean hasClaim(UUID uuid, long timestamp);
@@ -46,21 +46,26 @@ public interface ClaimRegistrar {
     List<Claim> getClaims(UUID uuid);
 
     /**
-     * Opens the inventory with the list of claims for the player
+     * Opens the inventory with the list of claims for the player.
      * @param player the player to open the inventory for
      */
     void openInventory(Player player);
 
     /**
-     * Allows a spoofer to open another person's claim inventory
+     * Allows a spoofer to open another person's claim inventory.
      * @param player The player who's claim menu to open
      * @param spoofer The user to open the inventory for
      */
     void openInventorySpoof(Player player, Player spoofer);
 
+    /**
+     * This forces a write to disk.
+     */
+    void flush();
+
     static Claim parse(UUID uuid, String timestamp, List<String> lines) {
         List<Reward> rewards = new ArrayList<>();
-        for (String line: lines) rewards.add(CrateAPI.getCrateRegistrar().createReward(line));
+        for (String line : lines) rewards.add(CrateAPI.getCrateRegistrar().createReward(line));
         return new Claim(uuid, Long.valueOf(timestamp), rewards);
     }
 }
