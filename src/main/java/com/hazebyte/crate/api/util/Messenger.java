@@ -2,11 +2,11 @@ package com.hazebyte.crate.api.util;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import net.md_5.bungee.api.chat.TextComponent;
 
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -78,7 +78,7 @@ public abstract class Messenger {
     }
     
     public static boolean tell (CommandSender sender, TextComponent msg) {
-        if ((sender == null) || msg == null || msg.equals("")) {
+        if ((sender == null) || msg == null || msg.getText().equals("")) {
             return false;
         }
 
