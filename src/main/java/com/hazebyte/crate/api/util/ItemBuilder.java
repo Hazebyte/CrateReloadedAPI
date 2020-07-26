@@ -1,6 +1,6 @@
 package com.hazebyte.crate.api.util;
 
-import com.hazebyte.crate.api.CrateAPI;
+import com.hazebyte.crate.api.ServerVersion;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -21,16 +21,17 @@ public class ItemBuilder {
 	static {
 		classCache.put("ItemMeta", ItemMeta.class);
 
-		if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+		if (ServerVersion.getVersion().gt(ServerVersion.v1_15_R1)) {
 			try {
-				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData", Integer.class));
+				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData",
+						Integer.class));
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	private ItemStack itemStack;
+	private final ItemStack itemStack;
 
 	public ItemBuilder(Material type) {
 		itemStack = new ItemStack(type);
@@ -60,10 +61,7 @@ public class ItemBuilder {
 	public static ItemBuilder of(ItemStack itemStack) {
 		Optional<ItemStack> optional = Optional.ofNullable(itemStack);
 
-		if (optional.isPresent())
-			return new ItemBuilder(optional.get());
-		else
-			return null;
+		return optional.map(ItemBuilder::new).orElse(null);
 	}
 
 	public ItemBuilder type(Material type) {
@@ -145,7 +143,7 @@ public class ItemBuilder {
 	public ItemBuilder removeEnchants() {
 		ItemMeta meta = itemStack.getItemMeta();
 		Map<Enchantment, Integer> enchantments = meta.getEnchants();
-		enchantments.keySet().forEach(enchantment -> enchantments.remove(enchantment));
+		enchantments.keySet().forEach(enchantments::remove);
 		this.itemStack.setItemMeta(meta);
 		return this;
 	}
@@ -162,21 +160,12 @@ public class ItemBuilder {
 		return this;
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemBuilder unbreakable(boolean unbreakable) {
 		ItemMeta meta = itemStack.getItemMeta();
-		if (CrateAPI.SERVER_VERSION.contains("1_8")) {
-			try {
-				Class metaClazz = Class.forName("org.bukkit.craftbukkit." + CrateAPI.SERVER_VERSION + ".inventory.CraftMetaItem");
-				Method spigotMethod = metaClazz.getDeclaredMethod("spigot");
-				spigotMethod.setAccessible(true);
-				Object spigotClazz = spigotMethod.invoke(meta);
-				Method setUnbreakable = spigotClazz.getClass().getMethod("setUnbreakable", boolean.class);
-				setUnbreakable.setAccessible(true);
-				setUnbreakable.invoke(spigotClazz, unbreakable);
-			} catch (Exception e) {
-				Messenger.severe("Failed to set unbreakable.");
-				e.printStackTrace();
-			}
+		if (ServerVersion.getVersion().lt(ServerVersion.v1_9_R1)) {
+			// Support for 1.8 spigot
+			meta.spigot().setUnbreakable(true);
 		} else {
 			meta.setUnbreakable(unbreakable);
 		}
@@ -192,8 +181,9 @@ public class ItemBuilder {
 				.flag(ItemFlag.HIDE_DESTROYS);
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemBuilder woolColor(DyeColor color) {
-		if(itemStack != null && itemStack.getType() == Material.WOOL) {
+		if (itemStack != null && itemStack.getType() == Material.WOOL) {
 			Wool wool = new Wool(color);
 			itemStack.setDurability(wool.toItemStack().getDurability());
 		}
@@ -201,27 +191,15 @@ public class ItemBuilder {
 	}
 
 	public ItemBuilder skull(SkullMeta meta) {
-		if(itemStack != null && itemStack.getType() == Material.SKULL) {
+		if (itemStack != null && itemStack.getType() == Material.SKULL) {
 			itemStack.setItemMeta(meta);
-		}
-		return this;
-	}
-
-	public enum DataType {
-		FLOAT, DOUBLE, STRING, BYTEARRAY, INTARRAY, BOOLEAN;
-	}
-
-	public ItemBuilder setGlowing(boolean glowing) {
-		if (glowing) {
-			unsafeEnchant(itemStack.getType() != Material.BOW ? Enchantment.ARROW_INFINITE : Enchantment.LUCK, 10);
-			flag(ItemFlag.HIDE_ENCHANTS);
 		}
 		return this;
 	}
 
 	public ItemBuilder setCustomModelData(Integer data) {
 		try {
-			if (CrateAPI.SERVER_VERSION.contains("1_15")) {
+			if (ServerVersion.getVersion().gt(ServerVersion.v1_15_R1)) {
 				ItemMeta meta = itemStack.getItemMeta();
 				Method method = methodCache.get("setCustomModelData");
 				method.invoke(meta, data);
@@ -232,7 +210,19 @@ public class ItemBuilder {
 		}
 		return this;
 	}
-	
+
+	public ItemBuilder setGlowing(boolean glowing) {
+		if (glowing) {
+			unsafeEnchant(itemStack.getType() != Material.BOW ? Enchantment.ARROW_INFINITE : Enchantment.LUCK, 10);
+			flag(ItemFlag.HIDE_ENCHANTS);
+		}
+		return this;
+	}
+
+	public enum DataType {
+		FLOAT, DOUBLE, STRING, BYTEARRAY, INTARRAY, BOOLEAN
+	}
+
 	public ItemStack asItemStack() {
 		return this.itemStack;
 	}
