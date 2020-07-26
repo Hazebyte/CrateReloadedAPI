@@ -69,9 +69,8 @@ public class ServerVersion implements Comparable<ServerVersion> {
      * Returns the current running server version.
      */
     public static ServerVersion getVersion() {
-        Matcher matcher = versionPattern.matcher(Bukkit.getBukkitVersion());
-        String serverString = matcher.replaceAll("");
-        return ServerVersion.of(serverString);
+        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+        return ServerVersion.of(version);
     }
 
     @Override
@@ -93,8 +92,6 @@ public class ServerVersion implements Comparable<ServerVersion> {
     /**
      * Returns true if the calling server version is greater than
      * the parameter.
-     *
-     * @param version
      */
     public boolean gt(ServerVersion version) {
         return this.compareTo(version) > 0;
@@ -103,9 +100,6 @@ public class ServerVersion implements Comparable<ServerVersion> {
     /**
      * Returns true if the calling server version is greater than
      * or equal to the parameter.
-     *
-     * @param version
-     * @return
      */
     public boolean gte(ServerVersion version) {
         return this.compareTo(version) >= 0;
@@ -114,9 +108,6 @@ public class ServerVersion implements Comparable<ServerVersion> {
     /**
      * Returns true if the calling server version is less than
      * the parameter.
-     *
-     * @param version
-     * @return
      */
     public boolean lt(ServerVersion version) {
         return this.compareTo(version) < 0;
@@ -125,9 +116,6 @@ public class ServerVersion implements Comparable<ServerVersion> {
     /**
      * Returns true if the calling server version is less than
      * or equal to the parameter.
-     *
-     * @param version
-     * @return
      */
     public boolean lte(ServerVersion version) {
         return this.compareTo(version) <= 0;
@@ -150,7 +138,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
 
         if (this.minor > serverVersion.minor) {
             return 1;
-        } else if (this.major < serverVersion.major) {
+        } else if (this.minor < serverVersion.minor) {
             return -1;
         }
 
