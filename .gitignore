@@ -11,3 +11,4 @@ gradle.properties
 
 # Output
 build/*
+target/*
