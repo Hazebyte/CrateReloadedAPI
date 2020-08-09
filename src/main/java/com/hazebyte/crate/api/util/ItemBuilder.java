@@ -26,7 +26,7 @@ public class ItemBuilder {
 				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData",
 						Integer.class));
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				/* Ignored */
 			}
 		}
 	}
