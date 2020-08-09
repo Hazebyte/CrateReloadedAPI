@@ -335,19 +335,6 @@ public interface Crate extends ConfigurationSerializable {
     void reloadHolographic();
 
     /**
-     * Toggles a holographic display to be shown.
-     *
-     * @param location the location at which the holographic is at.
-     */
-    void showHolographic(Location location);
-
-    /**
-     * Toggles a holographic display to be hidden.
-     * @param location the location at which the holographic is at.
-     */
-    void hideHolographic(Location location);
-
-    /**
      * Adds an effect to an crate. This will update all crates with the
      * state {@link Category} persistent.
      *
