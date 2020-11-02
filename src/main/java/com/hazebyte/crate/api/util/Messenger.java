@@ -155,22 +155,39 @@ public abstract class Messenger {
         }
         return broadcast(msg.toString());
     }
-    
-    public static void error (Object msg, StackTraceElement ele) {
+
+    public static void error(Object msg, StackTraceElement ele) {
         if (validate()) {
             logger.severe(msg + ": " + ele.getClassName() + "/" + ele.getMethodName() + ":" + ele.getLineNumber());
         }
     }
-    
-    public static void info (Object msg) {
+
+    /**
+     * Outputs the raw message to console.
+     *
+     * @param msg
+     */
+    public static void out(Object msg) {
+        if (msg == null || !validate()) {
+            return;
+        }
+        logger.info(msg.toString());
+    }
+
+    /**
+     * Outputs the formatted message to console.
+     *
+     * @param msg
+     */
+    public static void info(Object msg) {
         if (msg == null || !validate()) {
             return;
         }
         String formatted = Replacer.replace(msg.toString());
         logger.info(formatted);
     }
-    
-    public static void warning (Object msg) {
+
+    public static void warning(Object msg) {
         if (msg == null || !validate()) {
             return;
         }
