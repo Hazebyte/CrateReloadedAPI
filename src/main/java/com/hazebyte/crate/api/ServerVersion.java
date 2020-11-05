@@ -26,6 +26,9 @@ public class ServerVersion implements Comparable<ServerVersion> {
     public static ServerVersion v1_14_R1 = ServerVersion.of("1_14_1");
     public static ServerVersion v1_15_R1 = ServerVersion.of("1_15_1");
     public static ServerVersion v1_16_R1 = ServerVersion.of("1_16_1");
+    public static ServerVersion v1_16_R2 = ServerVersion.of("1_16_2");
+    public static ServerVersion v1_16_R3 = ServerVersion.of("1_16_3");
+    public static ServerVersion v1_16_R4 = ServerVersion.of("1_16_4");
 
     private final int major;
     private final int minor;
