@@ -1,7 +1,7 @@
 package com.hazebyte.crate.api.util;
 
 import com.hazebyte.crate.api.CrateAPI;
-import com.hazebyte.crate.api.crate.Crate;
+import com.hazebyte.crate.api.ServerVersion;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -38,6 +38,10 @@ public class Replacer {
                 .replace("{strikethrough}", "&m")
                 .replace("{underline}", "&n");
         string = replace(string, '&');
+
+        if (ServerVersion.getVersion().gte(ServerVersion.v1_16_R1)) {
+            string = ColorUtil.of(string);
+        }
         return string;
     }
 
