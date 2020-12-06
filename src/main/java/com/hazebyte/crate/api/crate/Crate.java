@@ -238,6 +238,13 @@ public interface Crate extends ConfigurationSerializable {
     int getPreviewRows();
 
     /**
+     * Returns the number of slots in a preview menu.
+     *
+     * @return the number of slots.
+     */
+    int getPreviewSlots();
+
+    /**
      * Sets the display name. If the name is null, it'll be set to the empty string.
      *
      * @param name the name used to format.
