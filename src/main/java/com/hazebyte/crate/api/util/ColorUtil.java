@@ -43,9 +43,8 @@ public class ColorUtil {
         Matcher matcher = pattern.matcher(message);
         while (matcher.find()) {
             String hexCode = matcher.group();
-            hexCode = hexCode.replace("{", "").replace("}", "");
-            ChatColor colorCode = getColor(hexCode);
-            message = message.replaceAll(hexCode, colorCode.toString());
+            ChatColor colorCode = getColor(hexCode.replace("{", "").replace("}", ""));
+            message = message.replace(hexCode, colorCode.toString());
         }
         return message;
     }
