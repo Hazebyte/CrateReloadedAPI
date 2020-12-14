@@ -10,10 +10,16 @@ import java.util.List;
 public class Replacer {
 
     public static String replace(String string) {
+        if (string == null || string.isEmpty()) {
+            return null;
+        }
+
         string = string.replace("{prefix}", Messenger.getPrefix())
                 .replace("{p}", Messenger.getPrefix())
-                .replace("{list}", CrateAPI.getCrateRegistrar() != null ? CrateAPI.getCrateRegistrar().getCrateString() : "");
+                .replace("{list}", CrateAPI.getCrateRegistrar() != null ?
+                        CrateAPI.getCrateRegistrar().getCrateString() : "");
 
+        // Legacy Support
         string = string.replace("{aqua}", "&b")
                 .replace("{black}", "&0")
                 .replace("{blue}", "&9")
@@ -39,6 +45,7 @@ public class Replacer {
                 .replace("{underline}", "&n");
         string = replace(string, '&');
 
+        // Hex Colors are 1.16+
         if (ServerVersion.getVersion().gte(ServerVersion.v1_16_R1)) {
             string = ColorUtil.of(string);
         }
@@ -46,11 +53,19 @@ public class Replacer {
     }
 
     public static String replace(String string, Player player) {
+        if (string == null || string.isEmpty()) {
+            return null;
+        }
+
         return string.replace("{player}", player.getName())
                 .replace("{playerUUID}", player.getUniqueId().toString());
     }
 
     public static String replace(String string, char color) {
+        if (string == null || string.isEmpty()) {
+            return null;
+        }
+
         return ChatColor.translateAlternateColorCodes(color, string);
     }
 

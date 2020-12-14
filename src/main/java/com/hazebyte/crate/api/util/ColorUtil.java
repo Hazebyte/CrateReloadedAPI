@@ -29,6 +29,10 @@ public class ColorUtil {
     }
 
     public static String of(String message) {
+        if (message == null || message.isEmpty()) {
+            return null;
+        }
+
         // Bracket pattern must be checked first
         message = ofPattern(message, bracketPattern);
         message = ofPattern(message, hexPattern);
@@ -39,6 +43,7 @@ public class ColorUtil {
         Matcher matcher = pattern.matcher(message);
         while (matcher.find()) {
             String hexCode = matcher.group();
+            hexCode = hexCode.replace("{", "").replace("}", "");
             ChatColor colorCode = getColor(hexCode);
             message = message.replaceAll(hexCode, colorCode.toString());
         }
