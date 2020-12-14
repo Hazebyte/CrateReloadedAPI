@@ -29,8 +29,9 @@ public class ColorUtil {
     }
 
     public static String of(String message) {
-        message = ofPattern(message, hexPattern);
+        // Bracket pattern must be checked first
         message = ofPattern(message, bracketPattern);
+        message = ofPattern(message, hexPattern);
         return message;
     }
 
