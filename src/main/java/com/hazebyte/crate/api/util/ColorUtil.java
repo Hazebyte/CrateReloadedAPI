@@ -14,6 +14,9 @@ public class ColorUtil {
     // Prefix (#) and matches any character A-F, a-f, 0-9 six times.
     private static final Pattern hexPattern = Pattern.compile("#([A-Fa-f0-9]{6})");
 
+    // ex: {#000000}
+    private static final Pattern bracketPattern = Pattern.compile("\\{#([A-Fa-f0-9]{6})\\}");
+
     // Chat messages are constantly called, we don't want to make reflection calls every single time.
     private static final Map<String, Method> methodCache = new HashMap<>();
 
@@ -26,7 +29,13 @@ public class ColorUtil {
     }
 
     public static String of(String message) {
-        Matcher matcher = hexPattern.matcher(message);
+        message = ofPattern(message, hexPattern);
+        message = ofPattern(message, bracketPattern);
+        return message;
+    }
+
+    private static String ofPattern(String message, Pattern pattern) {
+        Matcher matcher = pattern.matcher(message);
         while (matcher.find()) {
             String hexCode = matcher.group();
             ChatColor colorCode = getColor(hexCode);
