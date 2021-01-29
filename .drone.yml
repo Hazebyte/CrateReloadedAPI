@@ -4,6 +4,6 @@ name: default
 
 steps:
   - name: compile
-    image: maven:3-jdk-10
+    image: maven:3.6.3-jdk-8
     commands:
       - mvn
