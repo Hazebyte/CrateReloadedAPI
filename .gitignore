@@ -12,3 +12,5 @@ gradle.properties
 # Output
 build/*
 target/*
+
+*.iml

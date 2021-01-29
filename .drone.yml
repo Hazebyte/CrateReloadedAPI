@@ -6,4 +6,4 @@ steps:
   - name: compile
     image: maven:3-jdk-10
     commands:
-      - mvn -DskipTests=true
+      - mvn
