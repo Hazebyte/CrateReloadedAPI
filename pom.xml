@@ -90,15 +90,4 @@
     </plugins>
   </build>
 
-  <distributionManagement>
-    <repository>
-      <id>myMavenRepo</id>
-      <url>${myMavenRepoWriteUrl}</url>
-    </repository>
-    <snapshotRepository>
-      <id>myMavenRepo</id>
-      <url>${myMavenRepoWriteUrl}</url>
-    </snapshotRepository>
-  </distributionManagement>
-
 </project>
