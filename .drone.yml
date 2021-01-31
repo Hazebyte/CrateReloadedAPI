@@ -12,3 +12,18 @@ steps:
     image: maven:3.6.3-jdk-8
     commands:
       - mvn test
+
+  - name: javadoc
+    image: maven:3.6.3-jdk-8
+    environment:
+      TOKEN:
+        from_secret: TOKEN
+      TOKEN_OWNER:
+        from_secret: TOKEN_OWNER
+    commands:
+      - ./script/javadoc.sh
+    when:
+      branch:
+        - master
+      event:
+        - push
