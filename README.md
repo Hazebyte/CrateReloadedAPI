@@ -26,4 +26,4 @@ Community
 
 ## Maven/Gradle
 
-resource is temporarily down. [jar](https://28-106483681-gh.circle-artifacts.com/0/tmp/artifacts/CrateReloadedAPI-1.0.0.jar), [source](https://28-106483681-gh.circle-artifacts.com/0/tmp/artifacts/CrateReloadedAPI-1.0.0-sources.jar), [doc](https://28-106483681-gh.circle-artifacts.com/0/tmp/artifacts/CrateReloadedAPI-1.0.0-javadoc.jar)
+The maven repository is currently unavailable. The latest API jar may be downloaded [here](https://github.com/orgs/Hazebyte/packages?repo_name=CrateReloadedAPI).
