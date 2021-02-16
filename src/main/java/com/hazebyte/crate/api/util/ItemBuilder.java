@@ -21,7 +21,7 @@ public class ItemBuilder {
 	static {
 		classCache.put("ItemMeta", ItemMeta.class);
 
-		if (ServerVersion.getVersion().gt(ServerVersion.v1_15_R1)) {
+		if (ServerVersion.getVersion().gte(ServerVersion.v1_14_R1)) {
 			try {
 				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData",
 						Integer.class));
@@ -198,15 +198,16 @@ public class ItemBuilder {
 	}
 
 	public ItemBuilder setCustomModelData(Integer data) {
-		try {
-			if (ServerVersion.getVersion().gt(ServerVersion.v1_15_R1)) {
-				ItemMeta meta = itemStack.getItemMeta();
-				Method method = methodCache.get("setCustomModelData");
+		String key = "setCustomModelData";
+		if (methodCache.containsKey(key)) {
+			ItemMeta meta = itemStack.getItemMeta();
+			Method method = methodCache.get(key);
+			try {
 				method.invoke(meta, data);
-				this.itemStack.setItemMeta(meta);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			this.itemStack.setItemMeta(meta);
 		}
 		return this;
 	}
