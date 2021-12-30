@@ -117,8 +117,8 @@ public abstract class Messenger {
         if (components == null || components.length == 0) {
             return false;
         }
-        
-        for (Player player : Players.getOnlinePlayers()) {
+
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
             for (BaseComponent component : components) {
                 tell((CommandSender) player, component);
             }

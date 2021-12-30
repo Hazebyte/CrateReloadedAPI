@@ -15,19 +15,13 @@ import java.util.*;
 
 public class ItemBuilder {
 
-	private static final Map<String, Class<?>> classCache = new HashMap<>();
 	private static final Map<String, Method> methodCache = new HashMap<>();
 
 	static {
-		classCache.put("ItemMeta", ItemMeta.class);
-
 		if (ServerVersion.getVersion().gte(ServerVersion.v1_14_R1)) {
 			try {
-				methodCache.put("setCustomModelData", classCache.get("ItemMeta").getMethod("setCustomModelData",
-						Integer.class));
-			} catch (NoSuchMethodException e) {
-				/* Ignored */
-			}
+				methodCache.put("setCustomModelData", ItemMeta.class.getMethod("setCustomModelData", Integer.class));
+			} catch (NoSuchMethodException e) { /* ignored */ }
 		}
 	}
 
