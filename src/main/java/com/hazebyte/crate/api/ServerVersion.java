@@ -147,4 +147,16 @@ public class ServerVersion implements Comparable<ServerVersion> {
 
         return Integer.compare(this.revision, serverVersion.revision);
     }
+
+    public int getMajor() {
+        return major;
+    }
+
+    public int getMinor() {
+        return minor;
+    }
+
+    public int getRevision() {
+        return revision;
+    }
 }
