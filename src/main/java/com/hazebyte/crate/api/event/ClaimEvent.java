@@ -1,6 +1,6 @@
 package com.hazebyte.crate.api.event;
 
-import com.hazebyte.crate.api.crate.Claim;
+import com.hazebyte.crate.api.claim.Claim;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
