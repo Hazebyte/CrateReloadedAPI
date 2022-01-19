@@ -92,6 +92,11 @@ public class ServerVersion implements Comparable<ServerVersion> {
         return this.compareTo(version) == 0;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%d_%d_R%d", major, minor, revision);
+    }
+
     /**
      * Returns true if the calling server version is greater than
      * the parameter.
