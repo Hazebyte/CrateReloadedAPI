@@ -337,77 +337,35 @@ public interface Crate extends ConfigurationSerializable {
     void setHolographicText(List<String> texts);
 
     /**
-     * Update the strings of holographics.
+     * Sets the list of effects for a specific category.
+     * @param category The category to filter by.
+     * @param effects The list of effects.
      */
-    void reloadHolographic();
+    void setEffects(Category category, List<Effect> effects);
 
     /**
-     * Adds an effect to an crate. This will update all crates with the
-     * state {@link Category} persistent.
-     *
-     * @see <a href="https://github.com/Slikey/EffectLib/blob/master/src/main/java/de/slikey/effectlib/EffectManager.java">EffectLib</a>
-     *
-     * @param category type of {@link Category} which will trigger this effect.
-     * @param effect see {@link ConfigurationSection}
+     * Returns the list of effects for a specific category of actions.
+     * @param category The category to filter by.
+     * @return The list of effects that is filtered by the category.
      */
-    void addEffect(Category category, ConfigurationSection effect);
+    List<Effect> getEffects(Category category);
 
-    /**
-     * Removes an effect from an crate. This will update all crates with the
-     * state {@link Category} persistent.
-     *
-     * @param category Type of {@link Category} which will trigger this effect.
-     * @param effect see {@link ConfigurationSection}
-     *
-     * @return true if the specified effect is removed, false otherwise.
-     */
-    boolean removeEffect(Category category, ConfigurationSection effect);
-
-    /**
-     * Restarts all effects.
-     */
-    void reloadEffects();
-
-    /**
-     * Returns the effect at a location.
-     *
-     * @param location the location where the effect is at.
-     * @return the effect at that location
-     */
-    Effect getEffect(Location location);
-
-    /**
-     * Returns the set of effects within an category.
-     *
-     * @param category see {@link Category}
-     * @return the set of effects represented as {@link ConfigurationSection}
-     * within a category, otherwise if the category has no effects, null.
-     */
-    Collection<ConfigurationSection> getEffect(Category category);
+    void runEffect(Location location, Category category);
 
     /**
      * Starts all effects with the given {@link Category} at the given location.
      * If the effect category is PERSISTENT, the effect will not run if there is
      * a previous set of effects already running at that location.
+     * If a player is specified, the effect will only be shown for the target player.
      *
-     * @param location the location at which the effects start
+     * @param location the location at which the effects start.
      * @param category the category that triggers the effect.
+     * @param player the player to show the effects to.
      */
-    void runEffect(Location location, Category category);
-
     void runEffect(Location location, Category category, Player player);
 
     /**
-     * Stops all effects with the {@link Category#PERSISTENT} at the given location.
-     *
-     * @param location the location at which the effects are to be stopped.
-     */
-    void stopEffect(Location location);
-
-    boolean hasEffect(Location location);
-
-    /**
-     * Called whenever a player triggers a win for this crate..
+     * Called whenever a player triggers a win for this crate.
      * Calls {@link Reward#onWin(Player)}
      *
      * @param player the player who activated the crate

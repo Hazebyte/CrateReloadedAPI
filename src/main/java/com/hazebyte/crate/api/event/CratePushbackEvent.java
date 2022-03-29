@@ -6,14 +6,14 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.util.Vector;
 
-public class PushbackEvent extends Event implements Cancellable {
+public class CratePushbackEvent extends Event implements Cancellable {
 
     private Player target;
     private Vector vector;
     private boolean cancelled;
     private static HandlerList handlers = new HandlerList();
 
-    public PushbackEvent(Player target, Vector vector) {
+    public CratePushbackEvent(Player target, Vector vector) {
         this.target = target;
         this.vector = vector;
     }
