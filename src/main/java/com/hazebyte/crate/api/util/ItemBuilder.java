@@ -21,6 +21,8 @@ public class ItemBuilder {
 		if (ServerVersion.getVersion().gte(ServerVersion.v1_14_R1)) {
 			try {
 				methodCache.put("setCustomModelData", ItemMeta.class.getMethod("setCustomModelData", Integer.class));
+				methodCache.put("getCustomModelData", ItemMeta.class.getMethod("getCustomModelData"));
+				methodCache.put("hasCustomModelData", ItemMeta.class.getMethod("hasCustomModelData"));
 			} catch (NoSuchMethodException e) { /* ignored */ }
 		}
 	}
@@ -193,7 +195,7 @@ public class ItemBuilder {
 
 	public ItemBuilder setCustomModelData(Integer data) {
 		String key = "setCustomModelData";
-		if (methodCache.containsKey(key)) {
+		if (itemStack.hasItemMeta() && methodCache.containsKey(key)) {
 			ItemMeta meta = itemStack.getItemMeta();
 			Method method = methodCache.get(key);
 			try {
@@ -204,6 +206,44 @@ public class ItemBuilder {
 			this.itemStack.setItemMeta(meta);
 		}
 		return this;
+	}
+
+	public Integer getCustomModelData() {
+		String key = "getCustomModelData";
+		if (itemStack.hasItemMeta() && methodCache.containsKey(key)) {
+			ItemMeta meta = itemStack.getItemMeta();
+			Method method = methodCache.get(key);
+			try {
+				Object returnObj = method.invoke(meta);
+				if (!(returnObj instanceof Integer)) {
+					throw new Exception("Expected an integer return");
+				}
+
+				return (Integer) returnObj;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+
+	public Boolean hasCustomModelData() {
+		String key = "hasCustomModelData";
+		if (itemStack.hasItemMeta() && methodCache.containsKey(key)) {
+			ItemMeta meta = itemStack.getItemMeta();
+			Method method = methodCache.get(key);
+			try {
+				Object returnObj = method.invoke(meta);
+				if (!(returnObj instanceof Boolean)) {
+					throw new Exception("Expected a boolean return");
+				}
+
+				return (Boolean) returnObj;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
 	public ItemBuilder setGlowing(boolean glowing) {
