@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface ClaimRegistrar {
 
-    CompletableFuture<Claim> addClaim(OfflinePlayer player, Reward... rewards) throws IOException;
+    CompletableFuture<Claim> addClaim(OfflinePlayer player, Reward... rewards);
 
     CompletableFuture<Void> removeClaim(Claim claim) throws IOException;
 
