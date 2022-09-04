@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
- * Represents an event that is called when an user gives a crate to a player.
+ * Represents an event that is called when a user gives a crate to a player.
  */
 public class CrateGiveEvent extends Event implements Cancellable {
 

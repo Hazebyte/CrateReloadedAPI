@@ -7,9 +7,10 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
- * Represents an event where a crate was set to a location.
+ * This represents when a crate has been removed from a location.
+ * This may be triggered via the API or through a user command.
  */
-public class BlockSetEvent extends Event implements Cancellable {
+public class CrateRemoveEvent extends Event implements Cancellable {
 
     private Crate crate;
     private Location location;
@@ -17,7 +18,7 @@ public class BlockSetEvent extends Event implements Cancellable {
 
     private static HandlerList handlerList = new HandlerList();
 
-    public BlockSetEvent(Crate crate, Location location) {
+    public CrateRemoveEvent(Crate crate, Location location) {
         this.crate = crate;
         this.location = location;
     }
