@@ -1,4 +1,5 @@
 com.hazebyte.crate.api
+com.hazebyte.crate.api.claim
 com.hazebyte.crate.api.crate
 com.hazebyte.crate.api.crate.reward
 com.hazebyte.crate.api.effect
