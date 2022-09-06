@@ -30,6 +30,8 @@ public class ServerVersion implements Comparable<ServerVersion> {
     public static ServerVersion v1_16_R3 = ServerVersion.of("1_16_3");
     public static ServerVersion v1_16_R4 = ServerVersion.of("1_16_4");
 
+    public static ServerVersion SERVER_MOCK = new ServerVersion(Integer.MAX_VALUE,0,0);
+
     private final int major;
     private final int minor;
     private final int revision;
@@ -40,6 +42,14 @@ public class ServerVersion implements Comparable<ServerVersion> {
         this.revision = revision;
     }
 
+    public static boolean isMockServer(String versionString) {
+        return versionString.equals("ServerMock");
+    }
+
+    public boolean isMockServer() {
+        return this.equals(SERVER_MOCK);
+    }
+
     /**
      * This takes in a server version string and returns
      * the server version object. This string should be in the format
@@ -48,6 +58,10 @@ public class ServerVersion implements Comparable<ServerVersion> {
      * @return the server version
      */
     public static ServerVersion of(String versionString) {
+        if (isMockServer(versionString)) {
+            return ServerVersion.SERVER_MOCK;
+        }
+
         Matcher matcher = versionPattern.matcher(versionString);
         versionString = matcher.replaceAll("");
 
@@ -72,8 +86,9 @@ public class ServerVersion implements Comparable<ServerVersion> {
      * Returns the current running server version.
      */
     public static ServerVersion getVersion() {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        return ServerVersion.of(version);
+        String packageName = Bukkit.getServer().getClass().getName(); // org.bukkit.craftbukkit.v1_18_R1
+        String[] parts = packageName.split("\\.");
+        return ServerVersion.of(parts[3]);
     }
 
     @Override
