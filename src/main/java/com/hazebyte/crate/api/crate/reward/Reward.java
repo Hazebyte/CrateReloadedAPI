@@ -29,6 +29,19 @@ public interface Reward extends PluginSerializable {
      */
     RewardLine getLine();
 
+//    boolean verifyInclusivePermission(Player player);
+//
+//    void setInclusivePermissions(Set<String> permissions);
+//
+//    Set<String> getInclusivePermissions();
+//
+//    boolean verifyExclusivePermission(Player player);
+//
+//    void setExclusivePermissions(Set<String> permissions);
+//
+//    Set<String> getExclusivePermissions();
+
+
     /**
      * Checks if the player has any of the following permissions
      * specified by {@link Reward#getPermissions()}
@@ -36,6 +49,7 @@ public interface Reward extends PluginSerializable {
      * @param player the player to check
      * @return true if the player has any permission, false otherwise
      */
+    @Deprecated
     boolean hasPermission(Player player);
 
     /**
@@ -43,6 +57,7 @@ public interface Reward extends PluginSerializable {
      *
      * @param perms the list of permissions to set
      */
+    @Deprecated
     void setPermissions(List<String> perms);
 
     /**
@@ -50,6 +65,7 @@ public interface Reward extends PluginSerializable {
      *
      * @return the list of permissions, otherwise the empty list
      */
+    @Deprecated
     List<String> getPermissions();
 
     int getSlot();

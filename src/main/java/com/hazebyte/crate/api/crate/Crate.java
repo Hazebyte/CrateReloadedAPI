@@ -4,12 +4,10 @@ import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.effect.Category;
 import de.slikey.effectlib.Effect;
 import org.bukkit.Location;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -26,7 +24,7 @@ public interface Crate extends ConfigurationSerializable {
      */
     String getCrateName();
 
-    /**
+    /*
      * Returns the concatenation of the crate name and the type.
      *
      * @return the unique identifier
@@ -197,20 +195,6 @@ public interface Crate extends ConfigurationSerializable {
     boolean giveTo(Player player, int amount);
 
     /**
-     * Returns a string representation of all the rewards.
-     *
-     * @return a formatted string of rewards
-     */
-    String getRewardString();
-
-    /**
-     * Returns the number of rewards.
-     *
-     * @return the number of rewards
-     */
-    int getRewardSize();
-
-    /**
      * Returns the user-set attribute used to generate prizes.
      * If the minimum is greater than the maximum, it'll return
      * the maximum.
@@ -227,8 +211,6 @@ public interface Crate extends ConfigurationSerializable {
      * @return maximum number of rewards.
      */
     int getMaximumRewards();
-
-    double getGrossChance(List<Reward> rewards);
 
     /**
      * Returns the number of rows in a preview menu.
