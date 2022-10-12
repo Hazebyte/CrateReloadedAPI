@@ -2,7 +2,6 @@ package com.hazebyte.crate.api.crate;
 
 import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.effect.Category;
-import de.slikey.effectlib.Effect;
 import org.bukkit.Location;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
@@ -317,20 +316,6 @@ public interface Crate extends ConfigurationSerializable {
      * @param texts a list of strings. This may be set to null.
      */
     void setHolographicText(List<String> texts);
-
-    /**
-     * Sets the list of effects for a specific category.
-     * @param category The category to filter by.
-     * @param effects The list of effects.
-     */
-    void setEffects(Category category, List<Effect> effects);
-
-    /**
-     * Returns the list of effects for a specific category of actions.
-     * @param category The category to filter by.
-     * @return The list of effects that is filtered by the category.
-     */
-    List<Effect> getEffects(Category category);
 
     void runEffect(Location location, Category category);
 
