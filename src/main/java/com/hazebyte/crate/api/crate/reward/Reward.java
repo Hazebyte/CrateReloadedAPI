@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a reward.
@@ -137,22 +136,6 @@ public interface Reward extends PluginSerializable {
     void setItems(List<ItemStack> items);
 
     /**
-     * Adds an item to the reward.
-     *
-     * @param item the item to add.
-     * @return true if the collection of items is changed.
-     */
-    boolean addItem(ItemStack item);
-
-    /**
-     * Removes a single instance of the specified element from the collection.
-     *
-     * @param item the item to remove
-     * @return true if the instance is removed
-     */
-    boolean removeItem(ItemStack item);
-
-    /**
      * Returns the list of commands.
      *
      * @return the list of commands, otherwise the empty list.
@@ -174,33 +157,13 @@ public interface Reward extends PluginSerializable {
      */
     void setCommands(List<String> commands);
 
-    /**
-     * Adds an command to the reward.
-     *
-     * @param command the command to add.
-     * @return true if the collection of commands is changed.
-     */
-    boolean addCommand(String command);
+    List<String> getBroadcastMessage();
 
-    /**
-     * Removes a single instance of the specified element from the collection.
-     *
-     * @param command the command to remove.
-     * @return true if the instance is removed
-     */
-    boolean removeCommand(String command);
+    List<String> getOpenMessage();
 
-    Map<MessageType, String[]> getMessages();
+    void setBroadcastMessage(List<String> broadcastMessage);
 
-    String[] getBroadcast();
-
-    String[] getInlineBroadcast();
-
-    String[] getOpenMessage();
-
-    void setMessages(Tag tag, List<String> messages);
-
-    void setMessages(Tag tag, String... messages);
+    void setOpenMessage(List<String> openMessage);
 
     /**
      * Returns whether this is a constant reward -- meaning that this reward

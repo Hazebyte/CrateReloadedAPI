@@ -1,5 +1,6 @@
 package com.hazebyte.crate.api.claim;
 
+import com.hazebyte.crate.api.crate.Crate;
 import com.hazebyte.crate.api.crate.reward.Reward;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -16,6 +17,8 @@ import java.util.concurrent.CompletableFuture;
 public interface ClaimRegistrar {
 
     CompletableFuture<Claim> addClaim(OfflinePlayer player, Reward... rewards);
+
+    CompletableFuture<Claim> addClaim(OfflinePlayer player, Crate crate, int amount);
 
     CompletableFuture<Void> removeClaim(Claim claim) throws IOException;
 
