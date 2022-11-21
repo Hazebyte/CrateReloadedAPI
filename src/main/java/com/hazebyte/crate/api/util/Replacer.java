@@ -2,10 +2,12 @@ package com.hazebyte.crate.api.util;
 
 import com.hazebyte.crate.api.CrateAPI;
 import com.hazebyte.crate.api.ServerVersion;
+import com.hazebyte.crate.api.crate.Crate;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Replacer {
 
@@ -17,7 +19,7 @@ public class Replacer {
         string = string.replace("{prefix}", Messenger.getPrefix())
                 .replace("{p}", Messenger.getPrefix())
                 .replace("{list}", CrateAPI.getCrateRegistrar() != null ?
-                        CrateAPI.getCrateRegistrar().getCrateString() : "");
+                    CrateAPI.getCrateRegistrar().getCrates().stream().map(Crate::getCrateName).collect(Collectors.joining(" ")) : "");
 
         // Legacy Support
         string = string.replace("{aqua}", "&b")

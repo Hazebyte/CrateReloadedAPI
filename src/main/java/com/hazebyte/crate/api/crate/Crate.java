@@ -2,14 +2,15 @@ package com.hazebyte.crate.api.crate;
 
 import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.effect.Category;
+import com.hazebyte.crate.api.request.CrateOpenRequest;
+import com.hazebyte.crate.api.response.CrateOpenResponse;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * Represents a crate
@@ -45,20 +46,6 @@ public interface Crate extends ConfigurationSerializable {
      * @return the display item
      */
     ItemStack getDisplayItem();
-
-    /**
-     * Checks whether this crate has a display name.
-     *
-     * @return true if the display name is not null, false otherwise.
-     */
-    boolean hasDisplayName();
-
-    /**
-     * Checks whether this crate has a display item.
-     *
-     * @return true if the display item is not null, false otherwise.
-     */
-    boolean hasDisplayItem();
 
     /**
      * Returns the type that determines the minecraft action <br>
@@ -141,17 +128,6 @@ public interface Crate extends ConfigurationSerializable {
     List<Reward> getConstantRewards();
 
     /**
-     * Returns a reward that gives the user this crate.
-     * 
-     * @deprecated use {@link com.hazebyte.crate.api.claim.ClaimRegistrar#addClaim(OfflinePlayer, Crate, int)}
-     * @param name The player's name to give the reward to.
-     * @param amount The amount to give.
-     * @return A reward with this crate as a reward.
-     */
-    @Deprecated
-    Reward asReward(String name, int amount);
-
-    /**
      * Uses the built-in reward generator to pick a prize for a player.
      * The reward has to pass the permission check before it is put into
      * the list.
@@ -161,15 +137,13 @@ public interface Crate extends ConfigurationSerializable {
      */
     List<Reward> generatePrizes(Player player);
 
-    /**
-     * Opens a crate for a specific player.
-     *
-     * @param player The player who should open the crate.
-     * @param args The argument specific for a crate.
-     *             This varies depending on the type of crate.
-     * @return true if the crate is successfully opened, false otherwise.
-     */
-    boolean open(Player player, Object... args);
+    void submitConfirmationRequest(Player player, Location location);
+
+    CrateOpenResponse open(Player player, Location location);
+
+    CrateOpenResponse open(Player player, Location location, List<Reward> rewards);
+
+    void setOpenExecutor(Function<CrateOpenRequest, CrateOpenResponse> executor);
 
     /**
      * Previews a crate for the player.
@@ -334,42 +308,9 @@ public interface Crate extends ConfigurationSerializable {
      */
     void runEffect(Location location, Category category, Player player);
 
-    /**
-     * Called whenever a player triggers a win for this crate.
-     * Calls {@link Reward#onWin(Player)}
-     *
-     * @param player the player who activated the crate
-     * @param reward the reward that was generated
-     */
-    void onReward(Player player, Reward reward);
+    List<String> getOpenMessage();
 
-    /**
-     * Called whenever a player triggers a win for this crate.
-     *
-     * @param player the player who activated the crate.
-     * @param rewards the set of rewards that was generated.
-     */
-    void onRewards(Player player, List<Reward> rewards);
-
-    void onRewards(Player player, List<Reward> rewards, Location location);
-
-    void onRewards(Player player, List<Reward> rewards, Location location, Consumer consumer);
-
-    /**
-     * Returns the message wrapper. This message wrapper holds
-     * the set of messages individually sent to the player.
-     *
-     * @return {@link Message}
-     */
-    Message getOpenMessage();
-
-    /**
-     * Returns the message wrapper. This message wrapper holds
-     * the set of messages sent to every player.
-     *
-     * @return {@link Message}
-     */
-    Message getBroadcast();
+    List<String> getBroadcast();
 
     /**
      * Returns whether the crate is a placeable item.

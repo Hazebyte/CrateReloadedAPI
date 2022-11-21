@@ -1,10 +1,7 @@
 package com.hazebyte.crate.api.util;
 
 import com.google.common.base.Strings;
-import org.apache.commons.lang.WordUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +26,7 @@ public class ItemHelper {
 
     public static List<String> getLore(ItemStack item) {
         if (!hasLore(item)) {
-            return null;
+            return new ArrayList<>();
         }
 
         return item.getItemMeta().getLore();

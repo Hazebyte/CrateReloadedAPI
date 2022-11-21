@@ -1,0 +1,15 @@
+package com.hazebyte.crate.api.result;
+
+public enum CrateOpenResult {
+
+  EXECUTED,
+  NO_REWARDS_FOUND_FOR_PLAYER,
+  PREREQUISITE_NOT_MET,
+  REWARDS_SENT_TO_CLAIM,
+  CRATE_SENT_TO_CLAIM,
+  EFFECT_RAN,
+  OPEN_MESSAGE_SENT,
+  BROADCAST_MESSAGE_SENT,
+  UNABLE_TO_REMOVE_ITEM
+
+}

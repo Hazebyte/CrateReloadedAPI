@@ -1,6 +1,6 @@
 package com.hazebyte.crate.api.result;
 
-public enum RewardExecutorResult {
+public enum RewardOpenResult {
 
   ITEMS_GIVEN_TO_PLAYER,
   ITEMS_SENT_TO_CLAIM,

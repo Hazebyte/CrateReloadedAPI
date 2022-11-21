@@ -2,13 +2,13 @@ package com.hazebyte.crate.api.crate.reward;
 
 import com.hazebyte.crate.api.crate.Crate;
 import com.hazebyte.crate.api.crate.PluginSerializable;
-import com.hazebyte.crate.api.result.RewardExecutorResult;
+import com.hazebyte.crate.api.request.RewardOpenRequest;
+import com.hazebyte.crate.api.response.RewardOpenResponse;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-import java.util.Set;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * Represents a reward.
@@ -197,19 +197,9 @@ public interface Reward extends PluginSerializable {
      */
     void setUnique(boolean bool);
 
-    /**
-     * Called when a player wins a reward.
-     *
-     * @deprecated Use {@link Reward#execute(Player)}
-     * {@link com.hazebyte.crate.api.crate.CrateType#SUPPLY} do not trigger this.
-     * @param player the player to give this reward to.
-     */
-    @Deprecated
-    void onWin(Player player);
+    RewardOpenResponse execute(Player player);
 
-    Set<RewardExecutorResult> execute(Player player);
-
-    void setExecutor(BiFunction<Reward, Player, Set<RewardExecutorResult>> executor);
+    void setExecutor(Function<RewardOpenRequest, RewardOpenResponse> executor);
 
     boolean hasPostParsing();
 
