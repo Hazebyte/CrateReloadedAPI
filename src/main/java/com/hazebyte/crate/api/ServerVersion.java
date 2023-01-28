@@ -29,6 +29,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     public static ServerVersion v1_16_R2 = ServerVersion.of("1_16_2");
     public static ServerVersion v1_16_R3 = ServerVersion.of("1_16_3");
     public static ServerVersion v1_16_R4 = ServerVersion.of("1_16_4");
+    public static ServerVersion v1_19 = ServerVersion.of("1_19_100");
 
     public static ServerVersion SERVER_MOCK = new ServerVersion(Integer.MAX_VALUE,0,0);
 
