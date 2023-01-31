@@ -11,7 +11,12 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.Wool;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class ItemBuilder {
 
@@ -195,8 +200,8 @@ public class ItemBuilder {
 
 	public ItemBuilder setCustomModelData(Integer data) {
 		String key = "setCustomModelData";
-		if (itemStack.hasItemMeta() && methodCache.containsKey(key)) {
-			ItemMeta meta = itemStack.getItemMeta();
+		ItemMeta meta = itemStack.getItemMeta();
+		if (meta != null && methodCache.containsKey(key)) {
 			Method method = methodCache.get(key);
 			try {
 				method.invoke(meta, data);
@@ -210,8 +215,8 @@ public class ItemBuilder {
 
 	public Integer getCustomModelData() {
 		String key = "getCustomModelData";
-		if (itemStack.hasItemMeta() && methodCache.containsKey(key)) {
-			ItemMeta meta = itemStack.getItemMeta();
+		ItemMeta meta = itemStack.getItemMeta();
+		if (meta != null && methodCache.containsKey(key)) {
 			Method method = methodCache.get(key);
 			try {
 				Object returnObj = method.invoke(meta);
