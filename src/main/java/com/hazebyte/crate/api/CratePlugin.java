@@ -7,15 +7,15 @@ import org.bukkit.plugin.Plugin;
 
 public interface CratePlugin extends Plugin {
 
-    boolean isReady();
+  boolean isReady();
 
-    CrateRegistrar getCrateRegistrar();
+  CrateRegistrar getCrateRegistrar();
 
-    BlockCrateRegistrar getBlockCrateRegistrar();
+  BlockCrateRegistrar getBlockCrateRegistrar();
 
-    ClaimRegistrar getClaimRegistrar();
+  ClaimRegistrar getClaimRegistrar();
 
-    ServerVersion getServerVersion();
+  ServerVersion getServerVersion();
 
-    String getMessage(String key);
+  String getMessage(String key);
 }

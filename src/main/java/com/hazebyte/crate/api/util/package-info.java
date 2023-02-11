@@ -1,4 +1,2 @@
-/**
- * Functions to ease programmatic tasks.
- */
+/** Functions to ease programmatic tasks. */
 package com.hazebyte.crate.api.util;

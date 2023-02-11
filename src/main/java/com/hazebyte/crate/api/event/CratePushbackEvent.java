@@ -8,40 +8,40 @@ import org.bukkit.util.Vector;
 
 public class CratePushbackEvent extends Event implements Cancellable {
 
-    private Player target;
-    private Vector vector;
-    private boolean cancelled;
-    private static HandlerList handlers = new HandlerList();
+  private Player target;
+  private Vector vector;
+  private boolean cancelled;
+  private static HandlerList handlers = new HandlerList();
 
-    public CratePushbackEvent(Player target, Vector vector) {
-        this.target = target;
-        this.vector = vector;
-    }
+  public CratePushbackEvent(Player target, Vector vector) {
+    this.target = target;
+    this.vector = vector;
+  }
 
-    public Player getTarget() {
-        return target;
-    }
+  public Player getTarget() {
+    return target;
+  }
 
-    public Vector getVector() {
-        return vector;
-    }
+  public Vector getVector() {
+    return vector;
+  }
 
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
-    }
+  @Override
+  public boolean isCancelled() {
+    return cancelled;
+  }
 
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
-    }
+  @Override
+  public void setCancelled(boolean cancelled) {
+    this.cancelled = cancelled;
+  }
 
-    @Override
-    public HandlerList getHandlers() {
-        return handlers;
-    }
+  @Override
+  public HandlerList getHandlers() {
+    return handlers;
+  }
 
-    public static HandlerList getHandlerList() {
-        return handlers;
-    }
+  public static HandlerList getHandlerList() {
+    return handlers;
+  }
 }

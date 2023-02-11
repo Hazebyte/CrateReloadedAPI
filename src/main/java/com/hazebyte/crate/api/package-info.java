@@ -1,4 +1,2 @@
-/**
- * General classes in the API
- */
+/** General classes in the API */
 package com.hazebyte.crate.api;

@@ -1,132 +1,78 @@
 package com.hazebyte.crate.api.crate;
 
-import com.hazebyte.crate.api.crate.reward.Reward;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
+import com.hazebyte.crate.api.request.CreateCrateEffectRequest;
+import com.hazebyte.crate.api.request.GenerateCrateRewardRequest;
+import com.hazebyte.crate.api.request.GiveCrateRequest;
+import com.hazebyte.crate.api.request.OpenCrateRequest;
+import com.hazebyte.crate.api.request.PreviewCrateRequest;
+import com.hazebyte.crate.api.response.CreateCrateEffectResponse;
+import com.hazebyte.crate.api.response.GenerateCrateRewardResponse;
+import com.hazebyte.crate.api.response.GiveCrateResponse;
+import com.hazebyte.crate.api.response.OpenCrateResponse;
+import com.hazebyte.crate.api.response.PreviewCrateResponse;
+import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.List;
-
-/**
- * Contains methods used to manipulate and retrieve a crate.
- */
+/** Contains methods used to manipulate and retrieve a crate. */
 public interface CrateRegistrar {
 
-    /**
-     * Returns a crate with the given name, and type.
-     *
-     * @param name The ID or name of the crate
-     * @param type {@link CrateType}
-     * @throws IllegalArgumentException when the name or type is null
-     * @return {@link Crate}
-     */
-    Crate createCrate(String name, CrateType type) throws IllegalArgumentException;
+  /**
+   * Retrieves the specified {@link Crate} with a item.
+   *
+   * @param item ItemStack
+   * @return {@link Crate}
+   */
+  Crate getCrate(ItemStack item);
 
-    /**
-     * Creates a default reward.
-     *
-     * @return {@link Reward}
-     */
-    Reward createReward();
+  /**
+   * Retrieves the specified {@link Crate} given the crate identifier name.
+   *
+   * @param str Crate Identifier
+   * @return {@link Crate}
+   */
+  Crate getCrate(String str);
 
-    /**
-     * Creates a reward using a reward line.
-     *
-     * @param line reward line
-     * @return {@link Reward}
-     */
-    Reward createReward(String line);
+  /**
+   * Returns a list of crates
+   *
+   * @return a list of crates
+   */
+  List<Crate> getCrates();
 
-    /**
-     * Retrieves the specified {@link Crate} with a item.
-     * @param item ItemStack
-     * @return {@link Crate}
-     */
-    Crate getCrate(ItemStack item);
+  /**
+   * Checks if the item represents a crate.
+   *
+   * @param item {@link ItemStack}
+   * @return true if the item is a crate, false otherwise.
+   */
+  boolean isCrate(ItemStack item);
 
-    /**
-     * Retrieves the specified {@link Crate} given the crate identifier name.
-     * @param str Crate Identifier
-     * @return {@link Crate}
-     */
-    Crate getCrate(String str);
+  /**
+   * Adds a crate to the plugin. This registers the crate and makes it available to use.
+   *
+   * <p>todo List Requirements
+   *
+   * @param crate The crate that you want to add
+   */
+  void add(Crate crate);
 
-    /**
-     * Retrieves the specified {@link Crate} given the display name.
-     * @param str Display Name
-     * @return {@link Crate}
-     */
-    List<Crate> getCrateFromDisplayName(String str);
+  /**
+   * Removes a crate from the plugin. This unregisters the crate from the plugin. Actions will no
+   * longer be handled by this crate if you do so.
+   *
+   * @param crate The crate that you will remove
+   */
+  void remove(Crate crate);
 
-    /**
-     * Returns a list of crates
-     * @return a list of crates
-     */
-    List<Crate> getCrates();
+  OpenCrateResponse openCrate(OpenCrateRequest request);
 
-    /**
-     * Checks if the item represents a crate.
-     *
-     * @param item {@link ItemStack}
-     * @return true if the item is a crate, false otherwise.
-     */
-    boolean isCrate(ItemStack item);
+  PreviewCrateResponse previewCrate(PreviewCrateRequest request);
 
-    /**
-     * Adds a crate to the plugin. This registers the crate and makes it available to use.
-     *
-     * todo List Requirements
-     * @param crate The crate that you want to add
-     */
-    void add(Crate crate);
+  GenerateCrateRewardResponse generateRewards(GenerateCrateRewardRequest request);
 
-    /**
-     * Removes a crate from the plugin. This unregisters the crate from the plugin. Actions
-     * will no longer be handled by this crate if you do so.
-     * @param crate The crate that you will remove
-     */
-    void remove(Crate crate);
+  GiveCrateResponse giveCrate(GiveCrateRequest request);
 
-    boolean open(Crate crate, Player player, Object... objects);
+  CreateCrateEffectResponse createEffect(CreateCrateEffectRequest request);
 
-    /**
-     * Opens a crate and activates effects at the location.
-     *
-     * @param crate The crate that will be opened
-     * @param player The player who will open the crate
-     * @param location The location where the opening is based
-     * @param objects Optional parameters
-     * @return true if reward size is not zero, false otherwise.
-     */
-    boolean open(Crate crate, Player player, Location location, Object... objects);
-
-    /**
-     * Tries to open a crate if there is no confirmation page otherwise
-     * this will first show the confirmation menu.
-     *
-     * @param crate The crate that will be opened
-     * @param player The player who will open the crate
-     * @param location The location where the opening is based
-     * @param objects Optional parameters
-     * @return true if reward size is not zero, false otherwise.
-     */
-    boolean tryOpen(Crate crate, Player player, Location location, Object... objects);
-
-    /**
-     * Previews a crate in a built-in menu.
-     * @param crate The crate that will be previewed
-     * @param player The player who wants to see the crate
-     * @return false
-     */
-    boolean preview(Crate crate, Player player);
-
-    /**
-     * Previews all crates in a built-in menu.
-     * @param crates The list of crates to be viewed
-     * @param player The player who wants to see the crate
-     */
-    void previewAll(List<Crate> crates, Player player);
-
-    String getCrateString();
-
+  String getCrateString();
 }
