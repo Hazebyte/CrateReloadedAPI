@@ -152,16 +152,6 @@ public interface Crate extends ConfigurationSerializable {
     Reward asReward(String name, int amount);
 
     /**
-     * Uses the built-in reward generator to pick a prize for a player.
-     * The reward has to pass the permission check before it is put into
-     * the list.
-     *
-     * @param player The player who should win this reward set.
-     * @return List of {@link Reward} specifically for a {@link Player}
-     */
-    List<Reward> generatePrizes(Player player);
-
-    /**
      * Opens a crate for a specific player.
      *
      * @param player The player who should open the crate.

@@ -75,7 +75,6 @@ public interface CrateRegistrar {
     /**
      * Adds a crate to the plugin. This registers the crate and makes it available to use.
      *
-     * todo List Requirements
      * @param crate The crate that you want to add
      */
     void add(Crate crate);
@@ -86,6 +85,16 @@ public interface CrateRegistrar {
      * @param crate The crate that you will remove
      */
     void remove(Crate crate);
+
+    /**
+     * Uses the built-in reward generator to pick a prize for a player.
+     * The reward has to pass the permission check before it is put into
+     * the list.
+     *
+     * @param player The player who should win this reward set.
+     * @return List of {@link Reward} specifically for a {@link Player}
+     */
+    List<Reward> generateCrateRewards(Crate crate, Player player);
 
     boolean open(Crate crate, Player player, Object... objects);
 
