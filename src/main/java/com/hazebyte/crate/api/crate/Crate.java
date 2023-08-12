@@ -3,7 +3,6 @@ package com.hazebyte.crate.api.crate;
 import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.effect.Category;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -139,17 +138,6 @@ public interface Crate extends ConfigurationSerializable {
      * @return List of {@link Reward}
      */
     List<Reward> getConstantRewards();
-
-    /**
-     * Returns a reward that gives the user this crate.
-     * 
-     * @deprecated use {@link com.hazebyte.crate.api.claim.ClaimRegistrar#addClaim(OfflinePlayer, Crate, int)}
-     * @param name The player's name to give the reward to.
-     * @param amount The amount to give.
-     * @return A reward with this crate as a reward.
-     */
-    @Deprecated
-    Reward asReward(String name, int amount);
 
     /**
      * Opens a crate for a specific player.
