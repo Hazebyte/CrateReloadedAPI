@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Contains methods used to manipulate and retrieve a crate.
@@ -75,7 +76,6 @@ public interface CrateRegistrar {
     /**
      * Adds a crate to the plugin. This registers the crate and makes it available to use.
      *
-     * todo List Requirements
      * @param crate The crate that you want to add
      */
     void add(Crate crate);
@@ -87,38 +87,28 @@ public interface CrateRegistrar {
      */
     void remove(Crate crate);
 
-    boolean open(Crate crate, Player player, Object... objects);
-
     /**
-     * Opens a crate and activates effects at the location.
+     * Uses the built-in reward generator to pick a prize for a player.
+     * The reward has to pass the permission check before it is put into
+     * the list.
      *
-     * @param crate The crate that will be opened
-     * @param player The player who will open the crate
-     * @param location The location where the opening is based
-     * @param objects Optional parameters
-     * @return true if reward size is not zero, false otherwise.
+     * @param player The player who should win this reward set.
+     * @return List of {@link Reward} specifically for a {@link Player}
      */
-    boolean open(Crate crate, Player player, Location location, Object... objects);
+    List<Reward> generateCrateRewards(Crate crate, Player player);
 
-    /**
-     * Tries to open a crate if there is no confirmation page otherwise
-     * this will first show the confirmation menu.
-     *
-     * @param crate The crate that will be opened
-     * @param player The player who will open the crate
-     * @param location The location where the opening is based
-     * @param objects Optional parameters
-     * @return true if reward size is not zero, false otherwise.
-     */
-    boolean tryOpen(Crate crate, Player player, Location location, Object... objects);
+    void open(Crate crate, Player player, Location location);
+
+    void open(Crate crate, Player player, Location location, Map<String, Object> settings);
+
+    void openConfirmationPage(Crate crate, Player player, Location location);
 
     /**
      * Previews a crate in a built-in menu.
      * @param crate The crate that will be previewed
      * @param player The player who wants to see the crate
-     * @return false
      */
-    boolean preview(Crate crate, Player player);
+    void preview(Crate crate, Player player);
 
     /**
      * Previews all crates in a built-in menu.
@@ -126,6 +116,24 @@ public interface CrateRegistrar {
      * @param player The player who wants to see the crate
      */
     void previewAll(List<Crate> crates, Player player);
+
+    /**
+     * Sends a player <code>amount</code> of this crate and withdraws the cost of the crate.
+     *
+     * @param player The player who wants to purchase the crate.
+     * @param amount The amount that the player wants to purchase.
+     * @return true if the transaction is successful, otherwise false.
+     */
+    boolean purchase(Crate crate, Player player, int amount);
+
+    /**
+     * Gives the specified player the specified amount of crates.
+     *
+     * @param player The player to give the crate to.
+     * @param amount The amount to give
+     * @return true if this is successfully given, otherwise, false.
+     */
+    void giveCrate(Crate crate, Player player, int amount);
 
     String getCrateString();
 

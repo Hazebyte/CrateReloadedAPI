@@ -3,7 +3,6 @@ package com.hazebyte.crate.api.crate;
 import com.hazebyte.crate.api.crate.reward.Reward;
 import com.hazebyte.crate.api.effect.Category;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -139,62 +138,6 @@ public interface Crate extends ConfigurationSerializable {
      * @return List of {@link Reward}
      */
     List<Reward> getConstantRewards();
-
-    /**
-     * Returns a reward that gives the user this crate.
-     * 
-     * @deprecated use {@link com.hazebyte.crate.api.claim.ClaimRegistrar#addClaim(OfflinePlayer, Crate, int)}
-     * @param name The player's name to give the reward to.
-     * @param amount The amount to give.
-     * @return A reward with this crate as a reward.
-     */
-    @Deprecated
-    Reward asReward(String name, int amount);
-
-    /**
-     * Uses the built-in reward generator to pick a prize for a player.
-     * The reward has to pass the permission check before it is put into
-     * the list.
-     *
-     * @param player The player who should win this reward set.
-     * @return List of {@link Reward} specifically for a {@link Player}
-     */
-    List<Reward> generatePrizes(Player player);
-
-    /**
-     * Opens a crate for a specific player.
-     *
-     * @param player The player who should open the crate.
-     * @param args The argument specific for a crate.
-     *             This varies depending on the type of crate.
-     * @return true if the crate is successfully opened, false otherwise.
-     */
-    boolean open(Player player, Object... args);
-
-    /**
-     * Previews a crate for the player.
-     *
-     * @param player The player who should preview the crate.
-     */
-    void preview(Player player);
-
-    /**
-     * Sends a player <code>amount</code> of this crate and withdraws the cost of the crate.
-     *
-     * @param player The player who wants to purchase the crate.
-     * @param amount The amount that the player wants to purchase.
-     * @return true if the transaction is successful, otherwise false.
-     */
-    boolean purchase(Player player, int amount);
-
-    /**
-     * Gives a player <code>amount</code> of a crate.
-     *
-     * @param player The player to give the crate to.
-     * @param amount The amount to give
-     * @return true if this is successfully given, otherwise, false.
-     */
-    boolean giveTo(Player player, int amount);
 
     /**
      * Returns the user-set attribute used to generate prizes.
