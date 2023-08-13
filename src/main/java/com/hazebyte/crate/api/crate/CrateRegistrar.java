@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Contains methods used to manipulate and retrieve a crate.
@@ -96,30 +97,11 @@ public interface CrateRegistrar {
      */
     List<Reward> generateCrateRewards(Crate crate, Player player);
 
-    boolean open(Crate crate, Player player, Object... objects);
+    void open(Crate crate, Player player, Location location);
 
-    /**
-     * Opens a crate and activates effects at the location.
-     *
-     * @param crate The crate that will be opened
-     * @param player The player who will open the crate
-     * @param location The location where the opening is based
-     * @param objects Optional parameters
-     * @return true if reward size is not zero, false otherwise.
-     */
-    boolean open(Crate crate, Player player, Location location, Object... objects);
+    void open(Crate crate, Player player, Location location, Map<String, Object> settings);
 
-    /**
-     * Tries to open a crate if there is no confirmation page otherwise
-     * this will first show the confirmation menu.
-     *
-     * @param crate The crate that will be opened
-     * @param player The player who will open the crate
-     * @param location The location where the opening is based
-     * @param objects Optional parameters
-     * @return true if reward size is not zero, false otherwise.
-     */
-    boolean tryOpen(Crate crate, Player player, Location location, Object... objects);
+    void openConfirmationPage(Crate crate, Player player, Location location);
 
     /**
      * Previews a crate in a built-in menu.

@@ -140,16 +140,6 @@ public interface Crate extends ConfigurationSerializable {
     List<Reward> getConstantRewards();
 
     /**
-     * Opens a crate for a specific player.
-     *
-     * @param player The player who should open the crate.
-     * @param args The argument specific for a crate.
-     *             This varies depending on the type of crate.
-     * @return true if the crate is successfully opened, false otherwise.
-     */
-    boolean open(Player player, Object... args);
-
-    /**
      * Previews a crate for the player.
      *
      * @param player The player who should preview the crate.
