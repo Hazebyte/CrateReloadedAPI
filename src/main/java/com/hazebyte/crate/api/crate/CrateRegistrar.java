@@ -107,9 +107,8 @@ public interface CrateRegistrar {
      * Previews a crate in a built-in menu.
      * @param crate The crate that will be previewed
      * @param player The player who wants to see the crate
-     * @return false
      */
-    boolean preview(Crate crate, Player player);
+    void preview(Crate crate, Player player);
 
     /**
      * Previews all crates in a built-in menu.
@@ -117,6 +116,24 @@ public interface CrateRegistrar {
      * @param player The player who wants to see the crate
      */
     void previewAll(List<Crate> crates, Player player);
+
+    /**
+     * Sends a player <code>amount</code> of this crate and withdraws the cost of the crate.
+     *
+     * @param player The player who wants to purchase the crate.
+     * @param amount The amount that the player wants to purchase.
+     * @return true if the transaction is successful, otherwise false.
+     */
+    boolean purchase(Crate crate, Player player, int amount);
+
+    /**
+     * Gives the specified player the specified amount of crates.
+     *
+     * @param player The player to give the crate to.
+     * @param amount The amount to give
+     * @return true if this is successfully given, otherwise, false.
+     */
+    void giveCrate(Crate crate, Player player, int amount);
 
     String getCrateString();
 

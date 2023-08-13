@@ -140,31 +140,6 @@ public interface Crate extends ConfigurationSerializable {
     List<Reward> getConstantRewards();
 
     /**
-     * Previews a crate for the player.
-     *
-     * @param player The player who should preview the crate.
-     */
-    void preview(Player player);
-
-    /**
-     * Sends a player <code>amount</code> of this crate and withdraws the cost of the crate.
-     *
-     * @param player The player who wants to purchase the crate.
-     * @param amount The amount that the player wants to purchase.
-     * @return true if the transaction is successful, otherwise false.
-     */
-    boolean purchase(Player player, int amount);
-
-    /**
-     * Gives a player <code>amount</code> of a crate.
-     *
-     * @param player The player to give the crate to.
-     * @param amount The amount to give
-     * @return true if this is successfully given, otherwise, false.
-     */
-    boolean giveTo(Player player, int amount);
-
-    /**
      * Returns the user-set attribute used to generate prizes.
      * If the minimum is greater than the maximum, it'll return
      * the maximum.
