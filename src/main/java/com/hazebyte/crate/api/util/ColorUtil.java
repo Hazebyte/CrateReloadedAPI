@@ -11,9 +11,6 @@ import java.util.regex.Pattern;
 
 public class ColorUtil {
 
-    // Prefix (#) and matches any character A-F, a-f, 0-9 six times.
-    private static final Pattern hexPattern = Pattern.compile("#([A-Fa-f0-9]{6})");
-
     // ex: {#000000}
     private static final Pattern bracketPattern = Pattern.compile("\\{#([A-Fa-f0-9]{6})\\}");
 
@@ -35,7 +32,6 @@ public class ColorUtil {
 
         // Bracket pattern must be checked first
         message = ofPattern(message, bracketPattern);
-        message = ofPattern(message, hexPattern);
         return message;
     }
 
