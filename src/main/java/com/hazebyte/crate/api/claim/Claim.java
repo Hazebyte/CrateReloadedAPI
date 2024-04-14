@@ -3,6 +3,7 @@ package com.hazebyte.crate.api.claim;
 import com.hazebyte.crate.api.crate.reward.Reward;
 import org.bukkit.OfflinePlayer;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.function.Function;
 
@@ -12,21 +13,13 @@ import java.util.function.Function;
  */
 public interface Claim {
 
-    /**
-     * This returns the UUID of the claim.
-     * @return the UUID of the claim.
-     */
-    UUID getUUID();
+    UUID getId();
 
-    Reward[] getRewards();
+    List<Reward> getRewards();
 
     OfflinePlayer getOwner();
 
-    /**
-     * This returns the timestamp at which this claim was given.
-     * @return the timestamp of the claim.
-     */
-    long getTimestamp();
+    Long getTimestamp();
 
     boolean execute();
 

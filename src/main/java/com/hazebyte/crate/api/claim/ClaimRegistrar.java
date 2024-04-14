@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -16,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public interface ClaimRegistrar {
 
-    CompletableFuture<Claim> addClaim(OfflinePlayer player, Reward... rewards);
+    CompletableFuture<Claim> addClaim(OfflinePlayer player, List<Reward> rewards);
 
     CompletableFuture<Claim> addClaim(OfflinePlayer player, Crate crate, int amount);
 

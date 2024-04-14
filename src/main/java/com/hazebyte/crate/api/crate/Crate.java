@@ -279,7 +279,6 @@ public interface Crate extends ConfigurationSerializable {
 
     /**
      * Called whenever a player triggers a win for this crate.
-     * Calls {@link Reward#onWin(Player)}
      *
      * @param player the player who activated the crate
      * @param reward the reward that was generated

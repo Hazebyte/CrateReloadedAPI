@@ -197,16 +197,6 @@ public interface Reward extends PluginSerializable {
      */
     void setUnique(boolean bool);
 
-    /**
-     * Called when a player wins a reward.
-     *
-     * @deprecated Use {@link Reward#execute(Player)}
-     * {@link com.hazebyte.crate.api.crate.CrateType#SUPPLY} do not trigger this.
-     * @param player the player to give this reward to.
-     */
-    @Deprecated
-    void onWin(Player player);
-
     Set<RewardExecutorResult> execute(Player player);
 
     void setExecutor(BiFunction<Reward, Player, Set<RewardExecutorResult>> executor);
