@@ -2,34 +2,24 @@ package com.hazebyte.crate.api;
 
 import org.bukkit.Bukkit;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ServerVersion implements Comparable<ServerVersion> {
 
     private static final Map<String, ServerVersion> versions = new HashMap<>();
 
-    private static final Pattern versionPattern = Pattern.compile("[a-zA-Z]");
-    private static final Pattern numberPattern = Pattern.compile("[0-9]+_[0-9]+_[0-9]+");
+    private static final Pattern numberPattern = Pattern.compile("[0-9]+.[0-9]+.[0-9]+");
 
-    public static ServerVersion v1_8_R1 = ServerVersion.of("1_8_1");
-    public static ServerVersion v1_8_R2 = ServerVersion.of("1_8_2");
-    public static ServerVersion v1_8_R3 = ServerVersion.of("1_8_3");
-    public static ServerVersion v1_9_R1 = ServerVersion.of("1_9_1");
-    public static ServerVersion v1_10_R1 = ServerVersion.of("1_10_1");
-    public static ServerVersion v1_11_R1 = ServerVersion.of("1_11_1");
-    public static ServerVersion v1_12_R1 = ServerVersion.of("1_12_1");
-    public static ServerVersion v1_13_R1 = ServerVersion.of("1_13_1");
-    public static ServerVersion v1_14_R1 = ServerVersion.of("1_14_1");
-    public static ServerVersion v1_15_R1 = ServerVersion.of("1_15_1");
-    public static ServerVersion v1_16_R1 = ServerVersion.of("1_16_1");
-    public static ServerVersion v1_16_R2 = ServerVersion.of("1_16_2");
-    public static ServerVersion v1_16_R3 = ServerVersion.of("1_16_3");
-    public static ServerVersion v1_16_R4 = ServerVersion.of("1_16_4");
-    public static ServerVersion v1_19 = ServerVersion.of("1_19_100");
+    public static ServerVersion v1_8_R1 = new ServerVersion(1, 8, 1);
+    public static ServerVersion v1_8_R2 = new ServerVersion(1, 8, 2);
+    public static ServerVersion v1_9_R1 = new ServerVersion(1, 9, 1);
+    public static ServerVersion v1_10_R1 = new ServerVersion(1, 10, 1);
+    public static ServerVersion v1_12_R1 = new ServerVersion(1, 12, 1);
+    public static ServerVersion v1_13_R1 = new ServerVersion(1, 13, 1);
+    public static ServerVersion v1_14_R1 = new ServerVersion(1, 14, 1);
+    public static ServerVersion v1_16_R1 = new ServerVersion(1, 16, 1);
 
     public static ServerVersion SERVER_MOCK = new ServerVersion(Integer.MAX_VALUE,0,0);
 
@@ -44,7 +34,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     }
 
     public static boolean isMockServer(String versionString) {
-        return versionString.equals("ServerMock");
+        return versionString.contains("Mock");
     }
 
     public boolean isMockServer() {
@@ -52,10 +42,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     }
 
     /**
-     * This takes in a server version string and returns
-     * the server version object. This string should be in the format
-     * major_minor_revision e.g. v1_8_R1 => 1_8_1.
-     *
+     *  1.20.6 => Major (1), Minor (20), Revision (6)
      * @return the server version
      */
     public static ServerVersion of(String versionString) {
@@ -63,16 +50,13 @@ public class ServerVersion implements Comparable<ServerVersion> {
             return ServerVersion.SERVER_MOCK;
         }
 
-        Matcher matcher = versionPattern.matcher(versionString);
-        versionString = matcher.replaceAll("");
-
         if (!numberPattern.matcher(versionString).matches())
-            throw new IllegalArgumentException("incorrect server version syntax");
+            throw new IllegalArgumentException(String.format("Unable to parse server version: [%s]", versionString));
 
         if (versions.containsKey(versionString))
             return versions.get(versionString);
 
-        String[] parts = versionString.split("_");
+        String[] parts = versionString.split("\\.");
 
         int major = Integer.parseInt(parts[0]);
         int minor = Integer.parseInt(parts[1]);
@@ -87,9 +71,10 @@ public class ServerVersion implements Comparable<ServerVersion> {
      * Returns the current running server version.
      */
     public static ServerVersion getVersion() {
-        String packageName = Bukkit.getServer().getClass().getName(); // org.bukkit.craftbukkit.v1_18_R1
-        String[] parts = packageName.split("\\.");
-        return ServerVersion.of(parts[3]);
+        // 1.20.6-84-591521e (MC: 1.20.6)
+        String serverVersion = Bukkit.getServer().getVersion();
+        String[] parts = serverVersion.split("-");
+        return ServerVersion.of(parts[0]);
     }
 
     @Override
@@ -143,13 +128,6 @@ public class ServerVersion implements Comparable<ServerVersion> {
      */
     public boolean lte(ServerVersion version) {
         return this.compareTo(version) <= 0;
-    }
-
-    /**
-     * Returns all possible server versions.
-     */
-    public Collection<ServerVersion> getAllVersions() {
-        return versions.values();
     }
 
     @Override

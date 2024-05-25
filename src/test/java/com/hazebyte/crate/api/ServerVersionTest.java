@@ -3,7 +3,12 @@ package com.hazebyte.crate.api;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ServerVersionTest {
 
@@ -12,12 +17,12 @@ public class ServerVersionTest {
 
         @Test
         public void itRemovesAnyNonDigits() {
-            assertDoesNotThrow(() -> ServerVersion.of("RELEASE1_8_3"));
+            assertDoesNotThrow(() -> ServerVersion.of("1.8.3"));
         }
 
         @Test
         public void itSuccessfullyParses() {
-            ServerVersion version = ServerVersion.of("R1_8_3");
+            ServerVersion version = ServerVersion.of("1.8.3");
             assertNotNull(version);
             assertEquals(1, version.getMajor());
             assertEquals(8, version.getMinor());
@@ -26,7 +31,7 @@ public class ServerVersionTest {
 
         @Test
         public void throwsErrorOnIllegalNumberPattern() {
-            assertThrows(IllegalArgumentException.class, () -> ServerVersion.of("1_2_3_4"));
+            assertThrows(IllegalArgumentException.class, () -> ServerVersion.of("1.2.3.4"));
         }
 
     }
@@ -57,8 +62,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnGreaterMajor() {
-            ServerVersion a = ServerVersion.of("2_0_0");
-            ServerVersion b = ServerVersion.of("1_0_0");
+            ServerVersion a = ServerVersion.of("2.0.0");
+            ServerVersion b = ServerVersion.of("1.0.0");
             assertTrue(a.gt(b));
             assertTrue(a.gte(b));
             assertFalse(a.lt(b));
@@ -67,8 +72,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnGreaterMinor() {
-            ServerVersion a = ServerVersion.of("1_1_0");
-            ServerVersion b = ServerVersion.of("1_0_0");
+            ServerVersion a = ServerVersion.of("1.1.0");
+            ServerVersion b = ServerVersion.of("1.0.0");
             assertTrue(a.gt(b));
             assertTrue(a.gte(b));
             assertFalse(a.lt(b));
@@ -77,8 +82,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnGreaterRevision() {
-            ServerVersion a = ServerVersion.of("1_0_1");
-            ServerVersion b = ServerVersion.of("1_0_0");
+            ServerVersion a = ServerVersion.of("1.0.1");
+            ServerVersion b = ServerVersion.of("1.0.0");
             assertTrue(a.gt(b));
             assertTrue(a.gte(b));
             assertFalse(a.lt(b));
@@ -87,8 +92,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnEqual() {
-            ServerVersion a = ServerVersion.of("1_0_0");
-            ServerVersion b = ServerVersion.of("1_0_0");
+            ServerVersion a = ServerVersion.of("1.0.0");
+            ServerVersion b = ServerVersion.of("1.0.0");
             assertFalse(a.gt(b));
             assertTrue(a.gte(b));
             assertFalse(a.lt(b));
@@ -97,8 +102,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnLessThanMajor() {
-            ServerVersion a = ServerVersion.of("1_0_0");
-            ServerVersion b = ServerVersion.of("2_0_0");
+            ServerVersion a = ServerVersion.of("1.0.0");
+            ServerVersion b = ServerVersion.of("2.0.0");
             assertFalse(a.gt(b));
             assertFalse(a.gte(b));
             assertTrue(a.lt(b));
@@ -107,8 +112,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnLessThanMinor() {
-            ServerVersion a = ServerVersion.of("1_0_0");
-            ServerVersion b = ServerVersion.of("1_1_0");
+            ServerVersion a = ServerVersion.of("1.0.0");
+            ServerVersion b = ServerVersion.of("1.1.0");
             assertFalse(a.gt(b));
             assertFalse(a.gte(b));
             assertTrue(a.lt(b));
@@ -117,8 +122,8 @@ public class ServerVersionTest {
 
         @Test
         public void itReturnsOnLessThanRevision() {
-            ServerVersion a = ServerVersion.of("1_0_0");
-            ServerVersion b = ServerVersion.of("1_0_1");
+            ServerVersion a = ServerVersion.of("1.0.0");
+            ServerVersion b = ServerVersion.of("1.0.1");
             assertFalse(a.gt(b));
             assertFalse(a.gte(b));
             assertTrue(a.lt(b));

@@ -18,6 +18,7 @@ public enum AnimationType {
      * to the left-most slot.
      */
     CSGO,
+    CSGO_V2,
     CSGO_REVERSE,
     /**
      * Animation that transitions in a circular motion around a rectangle path.

@@ -280,14 +280,6 @@ public interface Crate extends ConfigurationSerializable {
     /**
      * Called whenever a player triggers a win for this crate.
      *
-     * @param player the player who activated the crate
-     * @param reward the reward that was generated
-     */
-    void onReward(Player player, Reward reward);
-
-    /**
-     * Called whenever a player triggers a win for this crate.
-     *
      * @param player the player who activated the crate.
      * @param rewards the set of rewards that was generated.
      */
@@ -297,21 +289,13 @@ public interface Crate extends ConfigurationSerializable {
 
     void onRewards(Player player, List<Reward> rewards, Location location, Consumer consumer);
 
-    /**
-     * Returns the message wrapper. This message wrapper holds
-     * the set of messages individually sent to the player.
-     *
-     * @return {@link Message}
-     */
-    Message getOpenMessage();
+    List<String> getOpenMessage();
 
-    /**
-     * Returns the message wrapper. This message wrapper holds
-     * the set of messages sent to every player.
-     *
-     * @return {@link Message}
-     */
-    Message getBroadcast();
+    void setOpenMessage(List<String> openMessage);
+
+    List<String> getBroadcastMessage();
+
+    void setBroadcastMessage(List<String> broadcast);
 
     /**
      * Returns whether the crate is a placeable item.
