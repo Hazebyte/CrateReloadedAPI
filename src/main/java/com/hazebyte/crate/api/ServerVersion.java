@@ -34,7 +34,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     }
 
     public static boolean isMockServer(String versionString) {
-        return versionString.contains("Mock");
+        return versionString.contains("1.19"); // MockBukkit version
     }
 
     public boolean isMockServer() {
@@ -72,7 +72,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
      */
     public static ServerVersion getVersion() {
         // 1.20.6-84-591521e (MC: 1.20.6)
-        String serverVersion = Bukkit.getServer().getVersion();
+        String serverVersion = Bukkit.getServer().getBukkitVersion();
         String[] parts = serverVersion.split("-");
         return ServerVersion.of(parts[0]);
     }

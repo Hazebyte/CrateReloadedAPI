@@ -1,14 +1,11 @@
 package com.hazebyte.crate.api.util;
 
 import com.hazebyte.crate.api.ServerVersion;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.material.Wool;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -165,10 +162,7 @@ public class ItemBuilder {
   @SuppressWarnings("deprecation")
   public ItemBuilder unbreakable(boolean unbreakable) {
     ItemMeta meta = itemStack.getItemMeta();
-    if (ServerVersion.getVersion().lt(ServerVersion.v1_9_R1)) {
-      // Support for 1.8 spigot
-      meta.spigot().setUnbreakable(true);
-    } else {
+    if (ServerVersion.getVersion().gte(ServerVersion.v1_9_R1)) {
       meta.setUnbreakable(unbreakable);
     }
     this.itemStack.setItemMeta(meta);
@@ -181,22 +175,6 @@ public class ItemBuilder {
         .flag(ItemFlag.HIDE_UNBREAKABLE)
         .flag(ItemFlag.HIDE_POTION_EFFECTS)
         .flag(ItemFlag.HIDE_DESTROYS);
-  }
-
-  @SuppressWarnings("deprecation")
-  public ItemBuilder woolColor(DyeColor color) {
-    if (itemStack != null && itemStack.getType() == Material.WOOL) {
-      Wool wool = new Wool(color);
-      itemStack.setDurability(wool.toItemStack().getDurability());
-    }
-    return this;
-  }
-
-  public ItemBuilder skull(SkullMeta meta) {
-    if (itemStack != null && itemStack.getType() == Material.SKULL) {
-      itemStack.setItemMeta(meta);
-    }
-    return this;
   }
 
   public Integer getCustomModelData() {
