@@ -20,6 +20,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     public static ServerVersion v1_13_R1 = new ServerVersion(1, 13, 1);
     public static ServerVersion v1_14_R1 = new ServerVersion(1, 14, 1);
     public static ServerVersion v1_16_R1 = new ServerVersion(1, 16, 1);
+    public static ServerVersion v1_20_R6 = new ServerVersion(1, 20, 6);
 
     public static ServerVersion SERVER_MOCK = new ServerVersion(Integer.MAX_VALUE,0,0);
 
