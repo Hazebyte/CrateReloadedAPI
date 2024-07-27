@@ -3,7 +3,6 @@ package com.hazebyte.crate.api;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -16,17 +15,21 @@ public class ServerVersionTest {
     class Of {
 
         @Test
-        public void itRemovesAnyNonDigits() {
-            assertDoesNotThrow(() -> ServerVersion.of("1.8.3"));
-        }
-
-        @Test
-        public void itSuccessfullyParses() {
+        public void successfullyParses() {
             ServerVersion version = ServerVersion.of("1.8.3");
             assertNotNull(version);
             assertEquals(1, version.getMajor());
             assertEquals(8, version.getMinor());
             assertEquals(3, version.getRevision());
+        }
+
+        @Test
+        public void successfullyParses_whenRevisionIsMissing() {
+            ServerVersion version = ServerVersion.of("1.21");
+            assertNotNull(version);
+            assertEquals(1, version.getMajor());
+            assertEquals(21, version.getMinor());
+            assertEquals(0, version.getRevision());
         }
 
         @Test

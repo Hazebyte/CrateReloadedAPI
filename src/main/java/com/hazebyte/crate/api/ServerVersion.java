@@ -11,6 +11,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     private static final Map<String, ServerVersion> versions = new HashMap<>();
 
     private static final Pattern numberPattern = Pattern.compile("[0-9]+.[0-9]+.[0-9]+");
+    private static final Pattern altNumberPattern = Pattern.compile("[0-9]+.[0-9]+");
 
     public static ServerVersion v1_8_R1 = new ServerVersion(1, 8, 1);
     public static ServerVersion v1_8_R2 = new ServerVersion(1, 8, 2);
@@ -21,6 +22,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     public static ServerVersion v1_14_R1 = new ServerVersion(1, 14, 1);
     public static ServerVersion v1_16_R1 = new ServerVersion(1, 16, 1);
     public static ServerVersion v1_20_R6 = new ServerVersion(1, 20, 6);
+    public static ServerVersion v1_21_R0 = new ServerVersion(1, 21, 0);
 
     public static ServerVersion SERVER_MOCK = new ServerVersion(Integer.MAX_VALUE,0,0);
 
@@ -51,7 +53,8 @@ public class ServerVersion implements Comparable<ServerVersion> {
             return ServerVersion.SERVER_MOCK;
         }
 
-        if (!numberPattern.matcher(versionString).matches())
+        if (!altNumberPattern.matcher(versionString).matches() &&
+            !numberPattern.matcher(versionString).matches())
             throw new IllegalArgumentException(String.format("Unable to parse server version: [%s]", versionString));
 
         if (versions.containsKey(versionString))
@@ -61,7 +64,10 @@ public class ServerVersion implements Comparable<ServerVersion> {
 
         int major = Integer.parseInt(parts[0]);
         int minor = Integer.parseInt(parts[1]);
-        int revision = Integer.parseInt(parts[2]);
+        int revision = 0;
+        if (parts.length > 2) {
+            revision = Integer.parseInt(parts[2]);
+        }
 
         ServerVersion version = new ServerVersion(major, minor, revision);
         versions.put(versionString, version);
